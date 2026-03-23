@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fokus-Indikatoren – MAGS</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <div class="page">
+    <header class="page-header">
+      <a href="../index.html">
+        <p class="site-title">MAGS</p>
+        <p class="site-subtitle">Migros Accessibility Guidelines &amp; Standards</p>
+      </a>
+    </header>
+
+    <main id="main" class="page-main">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../index.html">MAGS</a></li>
+          <li><a href="fokus-indikatoren.html" aria-current="page">Fokus-Indikatoren</a></li>
+        </ol>
+      </nav>
+
+      <h1>Fokus-Indikatoren</h1>
+
+      <h2>Sichtbarer Fokus <span class="badge badge-muss">Muss</span></h2>
+      <p>Jedes interaktive Element muss einen deutlich sichtbaren Fokus-Indikator haben (WCAG 2.4.7). Browserseitige Fokus-Stile dürfen nur entfernt werden, wenn ein gleichwertiger oder besserer Ersatz definiert wird.</p>
+
+      <pre><code>/* Niemals ohne Ersatz: */
+*:focus { outline: none; }  /* ❌ Verboten */
+
+/* Stattdessen: */
+*:focus-visible {
+  outline: 3px solid #1a56c2;
+  outline-offset: 2px;
+}  /* ✅ Richtig */</code></pre>
+
+      <h2>Fokus nicht verdeckt <span class="badge badge-muss">Muss</span></h2>
+      <p>Fokussierte Elemente dürfen nicht vollständig von anderen Inhalten verdeckt werden – z.B. durch Sticky Headers, Cookie-Banner oder Overlays (WCAG 2.4.11).</p>
+
+      <h2>Fokus-Erscheinung <span class="badge badge-soll">Soll</span></h2>
+      <p>Der Fokus-Indikator soll (WCAG 2.4.13):</p>
+      <ul>
+        <li>Mindestens 2px breit sein</li>
+        <li>Ein Kontrastverhältnis von mindestens 3:1 zum umgebenden Hintergrund haben</li>
+        <li>Das gesamte Element umschliessen (nicht nur eine Seite)</li>
+      </ul>
+
+      <h2>:focus vs. :focus-visible <span class="badge badge-soll">Soll</span></h2>
+      <p>Verwende <code>:focus-visible</code> statt <code>:focus</code>, um Fokus-Indikatoren nur bei Tastaturnavigation anzuzeigen – nicht bei Mausklicks. Das verbessert die Ästhetik ohne Barrierefreiheit zu opfern.</p>
+    </main>
+
+    <footer class="page-footer">
+      <p>MAGS – Migros Accessibility Guidelines &amp; Standards · <a href="../index.html">Zurück zur Übersicht</a></p>
+    </footer>
+  </div>
+</body>
+</html>

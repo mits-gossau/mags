@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Farben &amp; Kontraste – MAGS</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <div class="page">
+    <header class="page-header">
+      <a href="../index.html">
+        <p class="site-title">MAGS</p>
+        <p class="site-subtitle">Migros Accessibility Guidelines &amp; Standards</p>
+      </a>
+    </header>
+
+    <main id="main" class="page-main">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../index.html">MAGS</a></li>
+          <li><a href="farben-kontraste.html" aria-current="page">Farben &amp; Kontraste</a></li>
+        </ol>
+      </nav>
+
+      <h1>Farben &amp; Kontraste</h1>
+
+      <h2>Kontrastverhältnisse <span class="badge badge-muss">Muss</span></h2>
+      <table>
+        <caption>Mindest-Kontrastverhältnisse nach WCAG 2.2 AA</caption>
+        <thead>
+          <tr>
+            <th scope="col">Element</th>
+            <th scope="col">Mindest-Kontrast</th>
+            <th scope="col">WCAG-Kriterium</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Normaler Text (&lt; 18pt / 14pt bold)</td>
+            <td>4.5:1</td>
+            <td>1.4.3</td>
+          </tr>
+          <tr>
+            <td>Grosser Text (≥ 18pt / 14pt bold)</td>
+            <td>3:1</td>
+            <td>1.4.3</td>
+          </tr>
+          <tr>
+            <td>UI-Komponenten &amp; grafische Objekte</td>
+            <td>3:1</td>
+            <td>1.4.11</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Farbe nicht als alleiniger Informationsträger <span class="badge badge-muss">Muss</span></h2>
+      <p>Informationen dürfen nicht ausschliesslich durch Farbe vermittelt werden (WCAG 1.4.1). Zusätzlich müssen verwendet werden:</p>
+      <ul>
+        <li>Texte oder Labels</li>
+        <li>Muster oder Symbole</li>
+        <li>Unterstreichungen bei Links</li>
+      </ul>
+
+      <h3>Beispiel: Formular-Fehlermeldung</h3>
+      <pre><code>&lt;!-- Falsch: Nur rote Farbe zeigt den Fehler --&gt;
+&lt;input style="border-color: red"&gt;
+
+&lt;!-- Richtig: Farbe + Icon + Text --&gt;
+&lt;input aria-invalid="true" aria-describedby="error-1"&gt;
+&lt;p id="error-1" role="alert"&gt;⚠ Bitte geben Sie eine gültige E-Mail-Adresse ein.&lt;/p&gt;</code></pre>
+
+      <h2>Dark Mode &amp; High Contrast <span class="badge badge-soll">Soll</span></h2>
+      <p>Websites sollen <code>prefers-color-scheme</code> und <code>prefers-contrast</code> unterstützen. Kontrastverhältnisse müssen in allen Farbschemata eingehalten werden.</p>
+
+      <h2>Werkzeuge zur Kontrastprüfung</h2>
+      <ul>
+        <li><a href="https://webaim.org/resources/contrastchecker/" hreflang="en">WebAIM Contrast Checker</a></li>
+        <li><a href="https://www.figma.com/community/plugin/733159460536249875" hreflang="en">Stark (Figma Plugin)</a></li>
+        <li>Browser DevTools → Accessibility Inspector</li>
+      </ul>
+    </main>
+
+    <footer class="page-footer">
+      <p>MAGS – Migros Accessibility Guidelines &amp; Standards · <a href="../index.html">Zurück zur Übersicht</a></p>
+    </footer>
+  </div>
+</body>
+</html>

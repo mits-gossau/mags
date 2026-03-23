@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Manuelle Tests – MAGS</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <div class="page">
+    <header class="page-header">
+      <a href="../index.html">
+        <p class="site-title">MAGS</p>
+        <p class="site-subtitle">Migros Accessibility Guidelines &amp; Standards</p>
+      </a>
+    </header>
+
+    <main id="main" class="page-main">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../index.html">MAGS</a></li>
+          <li><a href="manuell.html" aria-current="page">Manuelle Tests</a></li>
+        </ol>
+      </nav>
+
+      <h1>Manuelle Tests</h1>
+
+      <h2>Schnelltest-Checkliste</h2>
+      <p>Diese Checks können bei jeder Entwicklung schnell durchgeführt werden:</p>
+      <ol>
+        <li><strong>Tab-Test:</strong> Alle interaktiven Elemente mit Tab erreichbar? Fokus sichtbar? Logische Reihenfolge?</li>
+        <li><strong>Zoom-Test:</strong> Seite auf 200% und 400% zoomen. Kein Inhaltsverlust? Kein horizontales Scrollen bei 320px?</li>
+        <li><strong>Heading-Test:</strong> Überschriften-Hierarchie prüfen (Browser-Extension oder DevTools).</li>
+        <li><strong>Kontrast-Test:</strong> Texte und UI-Elemente mit Contrast Checker prüfen.</li>
+        <li><strong>Nur-Tastatur-Test:</strong> Maus weglegen. Kann alles bedient werden?</li>
+        <li><strong>Bild-Test:</strong> Bilder deaktivieren. Geht Information verloren?</li>
+        <li><strong>Motion-Test:</strong> <code>prefers-reduced-motion</code> aktivieren. Animationen reduziert?</li>
+      </ol>
+
+      <h2>Ausführlicher Test</h2>
+      <p>Für umfassende Prüfungen (z.B. vor einem Release) zusätzlich:</p>
+      <ol>
+        <li>Screenreader-Test (siehe <a href="screenreader.html">Screenreader-Tests</a>)</li>
+        <li>Test mit Sprachsteuerung (Voice Control / Dragon)</li>
+        <li>Test mit Vergrösserungssoftware (ZoomText, Browser-Zoom)</li>
+        <li>Test mit aktiviertem High-Contrast-Mode</li>
+        <li>Prüfung aller Formulare inkl. Fehlermeldungen</li>
+        <li>Prüfung aller dynamischen Inhalte (Dialoge, Live-Updates, Lazy Loading)</li>
+      </ol>
+
+      <h2>Text-Spacing-Test <span class="badge badge-muss">Muss</span></h2>
+      <p>Folgende CSS-Werte im Browser überschreiben und prüfen, dass kein Inhalt abgeschnitten wird oder verloren geht:</p>
+      <pre><code>* {
+  line-height: 1.5 !important;
+  letter-spacing: 0.12em !important;
+  word-spacing: 0.16em !important;
+}
+p {
+  margin-bottom: 2em !important;
+}</code></pre>
+    </main>
+
+    <footer class="page-footer">
+      <p>MAGS – Migros Accessibility Guidelines &amp; Standards · <a href="../index.html">Zurück zur Übersicht</a></p>
+    </footer>
+  </div>
+</body>
+</html>

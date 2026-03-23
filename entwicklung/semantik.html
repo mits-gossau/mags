@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Semantisches HTML – MAGS</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <div class="page">
+    <header class="page-header">
+      <a href="../index.html">
+        <p class="site-title">MAGS</p>
+        <p class="site-subtitle">Migros Accessibility Guidelines &amp; Standards</p>
+      </a>
+    </header>
+
+    <main id="main" class="page-main">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../index.html">MAGS</a></li>
+          <li><a href="semantik.html" aria-current="page">Semantisches HTML</a></li>
+        </ol>
+      </nav>
+
+      <h1>Semantisches HTML</h1>
+      <p>Korrektes, semantisches HTML ist die Grundlage jeder barrierefreien Website. Bevor ARIA eingesetzt wird, muss geprüft werden, ob ein natives HTML-Element die Aufgabe erfüllt.</p>
+
+      <h2>Landmarks <span class="badge badge-muss">Muss</span></h2>
+      <p>Jede Seite muss die folgenden Landmark-Bereiche definieren:</p>
+      <pre><code>&lt;header&gt;   – Kopfbereich (banner)
+&lt;nav&gt;      – Navigation
+&lt;main&gt;     – Hauptinhalt (genau einer pro Seite)
+&lt;footer&gt;   – Fussbereich (contentinfo)
+&lt;aside&gt;    – Ergänzende Inhalte (complementary)
+&lt;section&gt;  – Thematische Gruppierung (mit aria-label oder Heading)</code></pre>
+
+      <aside class="hinweis">
+        <p><strong>Regel:</strong> Wenn mehrere <code>&lt;nav&gt;</code>-Elemente auf einer Seite existieren, muss jedes ein <code>aria-label</code> erhalten, um sie voneinander zu unterscheiden.</p>
+      </aside>
+
+      <h2>Überschriften-Hierarchie <span class="badge badge-muss">Muss</span></h2>
+      <p>Überschriften bilden eine logische Gliederung. Die Reihenfolge darf nicht übersprungen werden.</p>
+
+      <h3>Richtig</h3>
+      <pre><code>&lt;h1&gt;Seitentitel&lt;/h1&gt;
+  &lt;h2&gt;Abschnitt&lt;/h2&gt;
+    &lt;h3&gt;Unterabschnitt&lt;/h3&gt;
+  &lt;h2&gt;Nächster Abschnitt&lt;/h2&gt;</code></pre>
+
+      <h3>Falsch</h3>
+      <pre><code>&lt;h1&gt;Seitentitel&lt;/h1&gt;
+  &lt;h3&gt;Abschnitt&lt;/h3&gt;  &lt;!-- h2 übersprungen! --&gt;
+  &lt;h4&gt;Noch ein Abschnitt&lt;/h4&gt;</code></pre>
+
+      <h2>Sprache <span class="badge badge-muss">Muss</span></h2>
+      <p>Das <code>lang</code>-Attribut muss auf dem <code>&lt;html&gt;</code>-Element gesetzt sein. Fremdsprachige Textpassagen erhalten ein eigenes <code>lang</code>-Attribut.</p>
+      <pre><code>&lt;html lang="de"&gt;
+  ...
+  &lt;p&gt;Der &lt;span lang="en"&gt;Screen Reader&lt;/span&gt; liest den Text vor.&lt;/p&gt;</code></pre>
+
+      <h2>Listen <span class="badge badge-muss">Muss</span></h2>
+      <p>Aufzählungen und Navigationsmenüs müssen als <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code> oder <code>&lt;dl&gt;</code> ausgezeichnet werden – nicht als aneinandergereihte <code>&lt;div&gt;</code>-Elemente.</p>
+
+      <h2>Links vs. Buttons <span class="badge badge-muss">Muss</span></h2>
+      <table>
+        <caption>Verwendung von Links und Buttons</caption>
+        <thead>
+          <tr>
+            <th scope="col">Element</th>
+            <th scope="col">Verwendung</th>
+            <th scope="col">Beispiel</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>&lt;a href&gt;</code></td>
+            <td>Navigation zu einer anderen Seite oder einem Anker</td>
+            <td>«Mehr erfahren», «Zum Warenkorb»</td>
+          </tr>
+          <tr>
+            <td><code>&lt;button&gt;</code></td>
+            <td>Aktionen auslösen (ohne Seitenwechsel)</td>
+            <td>«Hinzufügen», «Menü öffnen», «Filter anwenden»</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <aside class="hinweis">
+        <p><strong>Wichtig:</strong> Niemals <code>&lt;div onclick&gt;</code> oder <code>&lt;span onclick&gt;</code> als Ersatz für Links oder Buttons verwenden. Diese Elemente sind nicht fokussierbar und werden von Screenreadern nicht als interaktiv erkannt.</p>
+      </aside>
+    </main>
+
+    <footer class="page-footer">
+      <p>MAGS – Migros Accessibility Guidelines &amp; Standards · <a href="../index.html">Zurück zur Übersicht</a></p>
+    </footer>
+  </div>
+</body>
+</html>

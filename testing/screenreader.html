@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Screenreader-Tests – MAGS</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <div class="page">
+    <header class="page-header">
+      <a href="../index.html">
+        <p class="site-title">MAGS</p>
+        <p class="site-subtitle">Migros Accessibility Guidelines &amp; Standards</p>
+      </a>
+    </header>
+
+    <main id="main" class="page-main">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../index.html">MAGS</a></li>
+          <li><a href="screenreader.html" aria-current="page">Screenreader-Tests</a></li>
+        </ol>
+      </nav>
+
+      <h1>Screenreader-Tests</h1>
+
+      <h2>Unterstützte Kombinationen <span class="badge badge-muss">Muss</span></h2>
+      <table>
+        <caption>Primäre Screenreader-Testmatrix</caption>
+        <thead>
+          <tr>
+            <th scope="col">Screenreader</th>
+            <th scope="col">Browser</th>
+            <th scope="col">Plattform</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>VoiceOver</td>
+            <td>Safari</td>
+            <td>macOS, iOS</td>
+          </tr>
+          <tr>
+            <td>NVDA</td>
+            <td>Firefox, Chrome</td>
+            <td>Windows</td>
+          </tr>
+          <tr>
+            <td>JAWS</td>
+            <td>Chrome</td>
+            <td>Windows</td>
+          </tr>
+          <tr>
+            <td>TalkBack</td>
+            <td>Chrome</td>
+            <td>Android</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Testszenarien</h2>
+      <p>Folgende Aspekte mit dem Screenreader prüfen:</p>
+      <ol>
+        <li><strong>Seitenstruktur:</strong> Landmarks werden korrekt angekündigt</li>
+        <li><strong>Überschriften:</strong> Navigation über Heading-Liste ergibt sinnvolle Gliederung</li>
+        <li><strong>Links:</strong> Link-Liste ergibt verständliche Texte (keine «hier klicken»-Links)</li>
+        <li><strong>Formulare:</strong> Labels werden bei Fokus vorgelesen, Pflichtfelder erkennbar</li>
+        <li><strong>Fehlermeldungen:</strong> Werden automatisch angekündigt</li>
+        <li><strong>Bilder:</strong> Alt-Texte werden korrekt vorgelesen, dekorative Bilder übersprungen</li>
+        <li><strong>Dynamische Inhalte:</strong> Live-Regions werden angekündigt</li>
+        <li><strong>Dialoge:</strong> Fokus springt in den Dialog, Inhalt wird angekündigt</li>
+      </ol>
+
+      <h2>Erste Schritte mit VoiceOver (macOS)</h2>
+      <table>
+        <caption>Wichtige VoiceOver-Tastenkombinationen</caption>
+        <thead>
+          <tr>
+            <th scope="col">Aktion</th>
+            <th scope="col">Tastenkombination</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>VoiceOver ein/aus</td>
+            <td><kbd>Cmd</kbd> + <kbd>F5</kbd></td>
+          </tr>
+          <tr>
+            <td>Nächstes Element</td>
+            <td><kbd>VO</kbd> + <kbd>→</kbd></td>
+          </tr>
+          <tr>
+            <td>Vorheriges Element</td>
+            <td><kbd>VO</kbd> + <kbd>←</kbd></td>
+          </tr>
+          <tr>
+            <td>Rotor öffnen</td>
+            <td><kbd>VO</kbd> + <kbd>U</kbd></td>
+          </tr>
+          <tr>
+            <td>Element aktivieren</td>
+            <td><kbd>VO</kbd> + <kbd>Space</kbd></td>
+          </tr>
+        </tbody>
+      </table>
+      <p><kbd>VO</kbd> = <kbd>Control</kbd> + <kbd>Option</kbd></p>
+    </main>
+
+    <footer class="page-footer">
+      <p>MAGS – Migros Accessibility Guidelines &amp; Standards · <a href="../index.html">Zurück zur Übersicht</a></p>
+    </footer>
+  </div>
+</body>
+</html>

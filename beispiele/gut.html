@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Best Practices – MAGS</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <div class="page">
+    <header class="page-header">
+      <a href="../index.html">
+        <p class="site-title">MAGS</p>
+        <p class="site-subtitle">Migros Accessibility Guidelines &amp; Standards</p>
+      </a>
+    </header>
+
+    <main id="main" class="page-main">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../index.html">MAGS</a></li>
+          <li><a href="gut.html" aria-current="page">Best Practices</a></li>
+        </ol>
+      </nav>
+
+      <h1>Best Practices – Referenzbeispiele</h1>
+      <p>Diese Seite zeigt korrekte, barrierefreie Implementierungen. Der Quellcode dieser Seite kann als Vorlage verwendet werden.</p>
+
+      <h2>Barrierefreies Formular</h2>
+      <form aria-label="Kontaktformular (Beispiel)" onsubmit="return false;">
+        <fieldset>
+          <legend>Kontaktanfrage</legend>
+
+          <p>
+            <label for="demo-name">Vor- und Nachname <span aria-hidden="true">*</span></label>
+            <input type="text" id="demo-name" name="name" autocomplete="name" required aria-required="true">
+          </p>
+
+          <p>
+            <label for="demo-email">E-Mail-Adresse <span aria-hidden="true">*</span></label>
+            <input type="email" id="demo-email" name="email" autocomplete="email" required aria-required="true">
+          </p>
+
+          <p>
+            <label for="demo-message">Nachricht</label>
+            <textarea id="demo-message" name="message" rows="4"></textarea>
+          </p>
+        </fieldset>
+
+        <p>
+          <button type="submit">Nachricht senden</button>
+        </p>
+        <p><small>Mit <span aria-hidden="true">*</span> gekennzeichnete Felder sind Pflichtfelder.</small></p>
+      </form>
+
+      <h2>Barrierefreie Navigation</h2>
+      <nav aria-label="Beispiel-Navigation">
+        <ul>
+          <li><a href="#" aria-current="page">Startseite</a></li>
+          <li><a href="#">Kurse</a></li>
+          <li><a href="#">Standorte</a></li>
+          <li><a href="#">Kontakt</a></li>
+        </ul>
+      </nav>
+
+      <h2>Barrierefreie Tabelle</h2>
+      <table>
+        <caption>Kursangebot Frühling 2026</caption>
+        <thead>
+          <tr>
+            <th scope="col">Kurs</th>
+            <th scope="col">Startdatum</th>
+            <th scope="col">Standort</th>
+            <th scope="col">Preis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Yoga für Einsteiger</td>
+            <td><time datetime="2026-04-15">15. April 2026</time></td>
+            <td>Zürich</td>
+            <td>CHF 280.–</td>
+          </tr>
+          <tr>
+            <td>Italienisch A1</td>
+            <td><time datetime="2026-04-22">22. April 2026</time></td>
+            <td>Bern</td>
+            <td>CHF 490.–</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Barrierefreier Disclosure (Details/Summary)</h2>
+      <details>
+        <summary>Kursgebühren und Zahlungsbedingungen</summary>
+        <p>Die Kursgebühr ist vor Kursbeginn zu bezahlen. Ratenzahlung ist auf Anfrage möglich. Bei Abmeldung bis 14 Tage vor Kursbeginn wird die Gebühr vollständig erstattet.</p>
+      </details>
+
+      <h2>Barrierefreies Bild</h2>
+      <figure>
+        <img src="../assets/logo.svg" alt="MAGS Logo – Migros Accessibility Guidelines und Standards" width="200" height="60">
+        <figcaption>Das MAGS-Logo als Beispiel für ein informatives Bild mit beschreibendem Alt-Text.</figcaption>
+      </figure>
+    </main>
+
+    <footer class="page-footer">
+      <p>MAGS – Migros Accessibility Guidelines &amp; Standards · <a href="../index.html">Zurück zur Übersicht</a></p>
+    </footer>
+  </div>
+</body>
+</html>

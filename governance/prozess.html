@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Prozess &amp; Rollen – MAGS</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <div class="page">
+    <header class="page-header">
+      <a href="../index.html">
+        <p class="site-title">MAGS</p>
+        <p class="site-subtitle">Migros Accessibility Guidelines &amp; Standards</p>
+      </a>
+    </header>
+
+    <main id="main" class="page-main">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../index.html">MAGS</a></li>
+          <li><a href="prozess.html" aria-current="page">Prozess &amp; Rollen</a></li>
+        </ol>
+      </nav>
+
+      <h1>Prozess &amp; Rollen</h1>
+
+      <h2>Definition of Done (A11y-Ergänzung) <span class="badge badge-muss">Muss</span></h2>
+      <p>Eine User Story gilt erst als erledigt, wenn:</p>
+      <ul>
+        <li>Automatisierter A11y-Test bestanden (axe, kein Fehler)</li>
+        <li>Tastaturnavigation funktioniert</li>
+        <li>Screenreader-Kurztest durchgeführt</li>
+        <li>Kontraste geprüft</li>
+        <li>Überschriften-Hierarchie korrekt</li>
+      </ul>
+
+      <h2>Rollen</h2>
+      <table>
+        <caption>Verantwortlichkeiten für Barrierefreiheit</caption>
+        <thead>
+          <tr>
+            <th scope="col">Rolle</th>
+            <th scope="col">Verantwortung</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>A11y-Champion (pro Team)</td>
+            <td>Ansprechperson, Review von A11y-Aspekten, Wissenstransfer</td>
+          </tr>
+          <tr>
+            <td>Designer</td>
+            <td>Kontraste, Fokus-Stile, Touch-Targets, Annotationen</td>
+          </tr>
+          <tr>
+            <td>Entwickler</td>
+            <td>Semantisches HTML, ARIA, Tastaturnavigation, Tests</td>
+          </tr>
+          <tr>
+            <td>Content-Autor</td>
+            <td>Alt-Texte, verständliche Texte, Linktexte, Untertitel</td>
+          </tr>
+          <tr>
+            <td>QA / Testing</td>
+            <td>Manuelle Tests, Screenreader-Tests, Testprotokolle</td>
+          </tr>
+          <tr>
+            <td>Product Owner</td>
+            <td>A11y-Anforderungen in Stories, Priorisierung von A11y-Bugs</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Review-Prozess für neue Komponenten</h2>
+      <ol>
+        <li>Design-Review: Kontraste, Fokus, Targets prüfen</li>
+        <li>Code-Review: Semantik, ARIA, Tastatur prüfen (PR-Checkliste)</li>
+        <li>A11y-Review: Screenreader-Test durch A11y-Champion</li>
+        <li>Dokumentation: Komponentenverwendung in MAGS ergänzen</li>
+      </ol>
+
+      <h2>Bug-Priorisierung</h2>
+      <table>
+        <caption>A11y-Bug-Prioritäten</caption>
+        <thead>
+          <tr>
+            <th scope="col">Priorität</th>
+            <th scope="col">Beschreibung</th>
+            <th scope="col">Beispiel</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Kritisch</td>
+            <td>Inhalt oder Funktion nicht zugänglich</td>
+            <td>Checkout nicht per Tastatur bedienbar</td>
+          </tr>
+          <tr>
+            <td>Hoch</td>
+            <td>Wesentliche Barriere, Workaround möglich</td>
+            <td>Fehlende Formular-Labels</td>
+          </tr>
+          <tr>
+            <td>Mittel</td>
+            <td>Eingeschränkte Nutzbarkeit</td>
+            <td>Fokus-Indikator schlecht sichtbar</td>
+          </tr>
+          <tr>
+            <td>Niedrig</td>
+            <td>Kosmetisch, Best Practice</td>
+            <td>Redundante ARIA-Attribute</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+
+    <footer class="page-footer">
+      <p>MAGS – Migros Accessibility Guidelines &amp; Standards · <a href="../index.html">Zurück zur Übersicht</a></p>
+    </footer>
+  </div>
+</body>
+</html>

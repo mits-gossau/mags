@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Komponentenmuster – MAGS</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <div class="page">
+    <header class="page-header">
+      <a href="../index.html">
+        <p class="site-title">MAGS</p>
+        <p class="site-subtitle">Migros Accessibility Guidelines &amp; Standards</p>
+      </a>
+    </header>
+
+    <main id="main" class="page-main">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../index.html">MAGS</a></li>
+          <li><a href="komponenten.html" aria-current="page">Komponentenmuster</a></li>
+        </ol>
+      </nav>
+
+      <h1>Komponentenmuster</h1>
+      <p>Häufig verwendete UI-Muster und ihre barrierefreie Implementierung, basierend auf den <a href="https://www.w3.org/WAI/ARIA/apg/" hreflang="en">WAI-ARIA Authoring Practices Guide (APG)</a>.</p>
+
+      <h2>Dialog (Modal) <span class="badge badge-muss">Muss</span></h2>
+      <ul>
+        <li><code>role="dialog"</code> und <code>aria-modal="true"</code></li>
+        <li><code>aria-labelledby</code> auf den Dialog-Titel</li>
+        <li>Fokus beim Öffnen in den Dialog setzen</li>
+        <li>Fokus-Trap innerhalb des Dialogs</li>
+        <li>Escape schliesst den Dialog</li>
+        <li>Fokus kehrt zum Auslöser zurück</li>
+      </ul>
+
+      <h2>Tabs <span class="badge badge-muss">Muss</span></h2>
+      <pre><code>&lt;div role="tablist" aria-label="Kursdetails"&gt;
+  &lt;button role="tab" aria-selected="true" aria-controls="panel-1" id="tab-1"&gt;Beschreibung&lt;/button&gt;
+  &lt;button role="tab" aria-selected="false" aria-controls="panel-2" id="tab-2"&gt;Termine&lt;/button&gt;
+&lt;/div&gt;
+&lt;div role="tabpanel" id="panel-1" aria-labelledby="tab-1"&gt;...&lt;/div&gt;
+&lt;div role="tabpanel" id="panel-2" aria-labelledby="tab-2" hidden&gt;...&lt;/div&gt;</code></pre>
+
+      <h2>Accordion <span class="badge badge-muss">Muss</span></h2>
+      <p>Bevorzugt das native <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code>-Element verwenden:</p>
+      <pre><code>&lt;details&gt;
+  &lt;summary&gt;Kursgebühren&lt;/summary&gt;
+  &lt;p&gt;Die Kursgebühr beträgt...&lt;/p&gt;
+&lt;/details&gt;</code></pre>
+
+      <h2>Dropdown / Disclosure</h2>
+      <pre><code>&lt;button aria-expanded="false" aria-controls="dropdown-menu"&gt;
+  Optionen
+&lt;/button&gt;
+&lt;ul id="dropdown-menu" role="menu" hidden&gt;
+  &lt;li role="menuitem"&gt;Bearbeiten&lt;/li&gt;
+  &lt;li role="menuitem"&gt;Löschen&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+
+      <h2>Tooltip</h2>
+      <pre><code>&lt;button aria-describedby="tooltip-1"&gt;ℹ&lt;/button&gt;
+&lt;div role="tooltip" id="tooltip-1"&gt;Weitere Informationen zum Kurs&lt;/div&gt;</code></pre>
+
+      <aside class="hinweis">
+        <p><strong>Referenz:</strong> Für vollständige Implementierungsdetails siehe den <a href="https://www.w3.org/WAI/ARIA/apg/patterns/" hreflang="en">WAI-ARIA APG Patterns</a>.</p>
+      </aside>
+    </main>
+
+    <footer class="page-footer">
+      <p>MAGS – Migros Accessibility Guidelines &amp; Standards · <a href="../index.html">Zurück zur Übersicht</a></p>
+    </footer>
+  </div>
+</body>
+</html>

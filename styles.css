@@ -1,0 +1,618 @@
+/* MAGS – Migros Accessibility Guidelines & Standards */
+/* Basiert auf der Migros Design Experience (MDX) Design Tokens */
+
+/* ================================================================
+   Fonts – Helvetica Now (via Migros CDN)
+   ================================================================ */
+
+/* Helvetica Now Display */
+@font-face {
+  font-family: 'Helvetica Now Display';
+  src: url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowDisplayW05-Rg.woff2') format('woff2'),
+       url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowDisplayW05-Rg.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica Now Display';
+  src: url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowDisplayMedium.woff2') format('woff2'),
+       url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowDisplayMedium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica Now Display';
+  src: url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowDisplayW05-Bold.woff2') format('woff2'),
+       url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowDisplayW05-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Helvetica Now Text */
+@font-face {
+  font-family: 'Helvetica Now Text';
+  src: url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowTextW05-Regular.woff2') format('woff2'),
+       url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowTextW05-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica Now Text';
+  src: url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowTextW01-Italic.woff2') format('woff2'),
+       url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowTextW01-Italic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica Now Text';
+  src: url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowTextW05-Medium.woff2') format('woff2'),
+       url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowTextW05-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica Now Text';
+  src: url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowTextW05-Bold.woff2') format('woff2'),
+       url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowTextW05-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Helvetica Now Micro */
+@font-face {
+  font-family: 'Helvetica Now Micro';
+  src: url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowMicroW01-Rg.woff2') format('woff2'),
+       url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowMicroW01-Rg.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Helvetica Now Micro';
+  src: url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowMicroW01-Bold.woff2') format('woff2'),
+       url('https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowMicroW01-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ================================================================
+   Design Tokens – MDX Light Theme (Default)
+   ================================================================ */
+
+:root {
+  /* MDX Base Colors (Migros Brand) */
+  --mdx-base-color-orange-900: rgb(128, 51, 0);
+  --mdx-base-color-orange-800: rgb(178, 72, 0);
+  --mdx-base-color-orange-700: rgb(229, 92, 0);
+  --mdx-base-color-orange-600: rgb(255, 102, 0);
+  --mdx-base-color-orange-500: rgb(255, 148, 76);
+  --mdx-base-color-orange-400: rgb(255, 179, 128);
+  --mdx-base-color-orange-300: rgb(255, 218, 194);
+  --mdx-base-color-orange-200: rgb(255, 233, 219);
+  --mdx-base-color-orange-100: rgb(255, 243, 235);
+
+  --mdx-base-color-grey-1000: rgb(0, 0, 0);
+  --mdx-base-color-grey-975: rgb(38, 38, 38);
+  --mdx-base-color-grey-950: rgb(51, 51, 51);
+  --mdx-base-color-grey-900: rgb(64, 64, 64);
+  --mdx-base-color-grey-800: rgb(89, 89, 89);
+  --mdx-base-color-grey-700: rgb(115, 115, 115);
+  --mdx-base-color-grey-600: rgb(128, 128, 128);
+  --mdx-base-color-grey-500: rgb(166, 166, 166);
+  --mdx-base-color-grey-400: rgb(191, 191, 191);
+  --mdx-base-color-grey-350: rgb(222, 222, 222);
+  --mdx-base-color-grey-300: rgb(224, 224, 224);
+  --mdx-base-color-grey-200: rgb(237, 237, 237);
+  --mdx-base-color-grey-150: rgb(244, 244, 244);
+  --mdx-base-color-grey-100: rgb(245, 245, 245);
+  --mdx-base-color-grey-0: rgb(255, 255, 255);
+
+  /* MDX Semantic Colors (Migros System) */
+  --mdx-base-color-apple-green-600: rgb(82, 166, 63);
+  --mdx-base-color-apple-green-900: rgb(46, 92, 35);
+  --mdx-base-color-apple-green-100: rgb(242, 249, 240);
+  --mdx-base-color-geranium-lake-600: rgb(218, 46, 37);
+  --mdx-base-color-geranium-lake-900: rgb(109, 23, 18);
+  --mdx-base-color-geranium-lake-100: rgb(252, 238, 238);
+  --mdx-base-color-vivid-cerulean-600: rgb(14, 149, 216);
+  --mdx-base-color-vivid-cerulean-900: rgb(8, 83, 120);
+  --mdx-base-color-vivid-cerulean-100: rgb(236, 248, 254);
+  --mdx-base-color-harvest-gold-600: rgb(194, 136, 0);
+  --mdx-base-color-harvest-gold-900: rgb(92, 64, 0);
+  --mdx-base-color-harvest-gold-100: rgb(255, 238, 199);
+
+  /* MDX Spacing */
+  --mdx-base-spacing-unit-0-5x: 0.25rem;
+  --mdx-base-spacing-unit-1x: 0.5rem;
+  --mdx-base-spacing-unit-1-5x: 0.75rem;
+  --mdx-base-spacing-unit-2x: 1rem;
+  --mdx-base-spacing-unit-3x: 1.5rem;
+  --mdx-base-spacing-unit-4x: 2rem;
+  --mdx-base-spacing-unit-5x: 2.5rem;
+  --mdx-base-spacing-unit-6x: 3rem;
+  --mdx-base-spacing-unit-8x: 4rem;
+
+  /* MDX Border */
+  --mdx-base-border-width-xs: 0.0625rem;
+  --mdx-base-border-width-sm: 0.09375rem;
+  --mdx-base-border-width-md: 0.125rem;
+  --mdx-base-border-radius-sm: 0.25rem;
+  --mdx-base-border-radius-md: 0.5rem;
+  --mdx-base-border-radius-lg: 1rem;
+
+  /* MDX Shadows */
+  --mdx-base-shadow-light: 0px 0px 6px 0px rgba(51, 51, 51, 0.1);
+  --mdx-base-shadow-medium: 0px 0px 12px 0px rgba(51, 51, 51, 0.1);
+  --mdx-base-shadow-strong: 0px 0px 12px 0px rgba(51, 51, 51, 0.2);
+
+  /* MDX Motion */
+  --mdx-base-motion-time-150: 150ms;
+  --mdx-base-motion-time-200: 200ms;
+  --mdx-base-motion-time-300: 300ms;
+  --mdx-base-motion-easing-ease-out-medium: cubic-bezier(0, 0, 0.4, 1);
+
+  /* MAGS Semantic Tokens – mapped from MDX */
+  --mags-color-text: var(--mdx-base-color-grey-950);
+  --mags-color-text-secondary: var(--mdx-base-color-grey-700);
+  --mags-color-bg: var(--mdx-base-color-grey-0);
+  --mags-color-bg-subtle: var(--mdx-base-color-grey-100);
+  --mags-color-primary: var(--mdx-base-color-orange-600);
+  --mags-color-primary-dark: var(--mdx-base-color-orange-800);
+  --mags-color-primary-light: var(--mdx-base-color-orange-100);
+  --mags-color-link: var(--mdx-base-color-vivid-cerulean-600);
+  --mags-color-link-visited: var(--mdx-base-color-vivid-cerulean-900);
+  --mags-color-focus: var(--mdx-base-color-vivid-cerulean-600);
+  --mags-color-border: var(--mdx-base-color-grey-300);
+  --mags-color-border-subtle: var(--mdx-base-color-grey-200);
+  --mags-color-success: var(--mdx-base-color-apple-green-600);
+  --mags-color-success-bg: var(--mdx-base-color-apple-green-100);
+  --mags-color-error: var(--mdx-base-color-geranium-lake-600);
+  --mags-color-error-bg: var(--mdx-base-color-geranium-lake-100);
+  --mags-color-warning: var(--mdx-base-color-harvest-gold-600);
+  --mags-color-warning-bg: var(--mdx-base-color-harvest-gold-100);
+
+  --mags-font-display: 'Helvetica Now Display', system-ui, sans-serif;
+  --mags-font-body: 'Helvetica Now Text', system-ui, sans-serif;
+  --mags-font-micro: 'Helvetica Now Micro', system-ui, sans-serif;
+  --mags-max-width: 52rem;
+}
+
+/* ================================================================
+   Dark Theme
+   ================================================================ */
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --mags-color-text: var(--mdx-base-color-grey-100);
+    --mags-color-text-secondary: var(--mdx-base-color-grey-400);
+    --mags-color-bg: var(--mdx-base-color-grey-950);
+    --mags-color-bg-subtle: var(--mdx-base-color-grey-900);
+    --mags-color-primary: var(--mdx-base-color-orange-500);
+    --mags-color-primary-dark: var(--mdx-base-color-orange-400);
+    --mags-color-primary-light: var(--mdx-base-color-orange-900);
+    --mags-color-link: var(--mdx-base-color-vivid-cerulean-500);
+    --mags-color-link-visited: var(--mdx-base-color-vivid-cerulean-400);
+    --mags-color-focus: var(--mdx-base-color-vivid-cerulean-500);
+    --mags-color-border: var(--mdx-base-color-grey-800);
+    --mags-color-border-subtle: var(--mdx-base-color-grey-900);
+    --mags-color-success-bg: var(--mdx-base-color-apple-green-900);
+    --mags-color-error-bg: var(--mdx-base-color-geranium-lake-900);
+    --mags-color-warning-bg: var(--mdx-base-color-harvest-gold-900);
+
+    /* Dark mode cerulean shades from MDX */
+    --mdx-base-color-vivid-cerulean-500: rgb(87, 193, 244);
+    --mdx-base-color-vivid-cerulean-400: rgb(135, 210, 247);
+  }
+}
+
+/* ================================================================
+   Reset & Base
+   ================================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--mags-font-body);
+  font-size: 1rem;
+  line-height: 1.375;
+  color: var(--mags-color-text);
+  background-color: var(--mags-color-bg);
+}
+
+/* ================================================================
+   Layout
+   ================================================================ */
+
+.page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  min-height: 100vh;
+}
+
+.page-header {
+  padding: var(--mdx-base-spacing-unit-3x) var(--mdx-base-spacing-unit-4x);
+  border-bottom: var(--mdx-base-border-width-md) solid var(--mags-color-primary);
+}
+
+.page-header a {
+  text-decoration: none;
+  color: var(--mags-color-text);
+}
+
+.page-header .site-title {
+  font-family: var(--mags-font-display);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.page-header .site-subtitle {
+  font-family: var(--mags-font-micro);
+  font-size: 0.875rem;
+  margin: var(--mdx-base-spacing-unit-0-5x) 0 0;
+  color: var(--mags-color-text-secondary);
+}
+
+.page-main {
+  max-width: var(--mags-max-width);
+  width: 100%;
+  margin: 0 auto;
+  padding: var(--mdx-base-spacing-unit-4x);
+}
+
+.page-footer {
+  margin-top: auto;
+  padding: var(--mdx-base-spacing-unit-3x) var(--mdx-base-spacing-unit-4x);
+  border-top: var(--mdx-base-border-width-xs) solid var(--mags-color-border);
+  font-family: var(--mags-font-micro);
+  font-size: 0.875rem;
+  text-align: center;
+  color: var(--mags-color-text-secondary);
+}
+
+/* ================================================================
+   Navigation
+   ================================================================ */
+
+nav[aria-label] ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+nav[aria-label] li {
+  margin: var(--mdx-base-spacing-unit-0-5x) 0;
+}
+
+.breadcrumb {
+  margin-bottom: var(--mdx-base-spacing-unit-4x);
+  font-family: var(--mags-font-micro);
+  font-size: 0.875rem;
+}
+
+.breadcrumb ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--mdx-base-spacing-unit-0-5x);
+}
+
+.breadcrumb li:not(:last-child)::after {
+  content: "›";
+  margin-left: var(--mdx-base-spacing-unit-0-5x);
+}
+
+/* ================================================================
+   Typografie – MDX Font Scale
+   ================================================================ */
+
+h1, h2, h3, h4 {
+  font-family: var(--mags-font-display);
+  line-height: 1.2;
+  margin-top: var(--mdx-base-spacing-unit-6x);
+  margin-bottom: var(--mdx-base-spacing-unit-2x);
+}
+
+h1 {
+  font-size: 2.25rem;
+  line-height: 2.75rem;
+  font-weight: 800;
+  margin-top: 0;
+}
+
+h2 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 800;
+  border-bottom: var(--mdx-base-border-width-xs) solid var(--mags-color-border);
+  padding-bottom: var(--mdx-base-spacing-unit-1x);
+}
+
+h3 {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+}
+
+h4 {
+  font-size: 1rem;
+  line-height: 1.375rem;
+  font-weight: 700;
+}
+
+p {
+  margin: 0 0 var(--mdx-base-spacing-unit-2x);
+}
+
+/* ================================================================
+   Links
+   ================================================================ */
+
+a {
+  color: var(--mags-color-link);
+  text-decoration: underline;
+  text-decoration-thickness: var(--mdx-base-border-width-xs);
+  text-underline-offset: 0.15em;
+  transition: text-decoration-thickness var(--mdx-base-motion-time-150) var(--mdx-base-motion-easing-ease-out-medium);
+}
+
+a:visited {
+  color: var(--mags-color-link-visited);
+}
+
+a:hover {
+  text-decoration-thickness: var(--mdx-base-border-width-md);
+}
+
+a:focus-visible {
+  outline: 3px solid var(--mags-color-focus);
+  outline-offset: 2px;
+  border-radius: var(--mdx-base-border-radius-sm);
+}
+
+/* ================================================================
+   Skip-Link
+   ================================================================ */
+
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: var(--mdx-base-spacing-unit-2x);
+  padding: var(--mdx-base-spacing-unit-1x) var(--mdx-base-spacing-unit-2x);
+  background: var(--mags-color-primary);
+  color: var(--mdx-base-color-grey-0);
+  font-family: var(--mags-font-body);
+  font-weight: 700;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 0 0 var(--mdx-base-border-radius-sm) var(--mdx-base-border-radius-sm);
+}
+
+.skip-link:focus {
+  top: 0;
+  color: var(--mdx-base-color-grey-0);
+}
+
+/* ================================================================
+   Code
+   ================================================================ */
+
+code {
+  font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, monospace;
+  font-size: 0.875rem;
+  background: var(--mags-color-bg-subtle);
+  padding: 0.1em 0.35em;
+  border-radius: var(--mdx-base-border-radius-sm);
+}
+
+pre {
+  background: var(--mags-color-bg-subtle);
+  padding: var(--mdx-base-spacing-unit-3x);
+  overflow-x: auto;
+  border-radius: var(--mdx-base-border-radius-md);
+  border: var(--mdx-base-border-width-xs) solid var(--mags-color-border);
+  line-height: 1.5;
+}
+
+pre code {
+  background: none;
+  padding: 0;
+}
+
+/* ================================================================
+   Hinweise / Aside
+   ================================================================ */
+
+aside,
+.hinweis {
+  background: var(--mags-color-primary-light);
+  border-left: 4px solid var(--mags-color-primary);
+  padding: var(--mdx-base-spacing-unit-2x) var(--mdx-base-spacing-unit-3x);
+  margin: var(--mdx-base-spacing-unit-4x) 0;
+  border-radius: 0 var(--mdx-base-border-radius-sm) var(--mdx-base-border-radius-sm) 0;
+}
+
+/* ================================================================
+   Tabellen
+   ================================================================ */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: var(--mdx-base-spacing-unit-4x) 0;
+}
+
+th, td {
+  padding: var(--mdx-base-spacing-unit-1-5x) var(--mdx-base-spacing-unit-2x);
+  border: var(--mdx-base-border-width-xs) solid var(--mags-color-border);
+  text-align: left;
+}
+
+th {
+  background: var(--mags-color-bg-subtle);
+  font-family: var(--mags-font-body);
+  font-weight: 700;
+}
+
+caption {
+  font-family: var(--mags-font-display);
+  font-weight: 700;
+  margin-bottom: var(--mdx-base-spacing-unit-1x);
+  text-align: left;
+  font-size: 1.1em;
+}
+
+/* ================================================================
+   Listen
+   ================================================================ */
+
+ul, ol {
+  padding-left: var(--mdx-base-spacing-unit-3x);
+  margin: 0 0 var(--mdx-base-spacing-unit-2x);
+}
+
+li {
+  margin: var(--mdx-base-spacing-unit-0-5x) 0;
+}
+
+/* ================================================================
+   Inhaltsverzeichnis (Startseite)
+   ================================================================ */
+
+.toc-section {
+  margin: var(--mdx-base-spacing-unit-4x) 0;
+}
+
+.toc-section h2 {
+  font-size: 1.25rem;
+  border: none;
+  padding: 0;
+  margin-bottom: var(--mdx-base-spacing-unit-1x);
+}
+
+.toc-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.toc-section li {
+  padding: var(--mdx-base-spacing-unit-1x) 0;
+  border-bottom: var(--mdx-base-border-width-xs) solid var(--mags-color-border-subtle);
+}
+
+.toc-section a {
+  display: inline-block;
+  padding: var(--mdx-base-spacing-unit-0-5x) 0;
+}
+
+/* ================================================================
+   Badges (Muss / Soll / Kann)
+   ================================================================ */
+
+.badge {
+  display: inline-block;
+  font-family: var(--mags-font-micro);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  padding: 0.15em 0.5em;
+  border-radius: var(--mdx-base-border-radius-sm);
+  vertical-align: middle;
+  margin-left: var(--mdx-base-spacing-unit-1x);
+}
+
+.badge-muss {
+  background: var(--mdx-base-color-geranium-lake-600);
+  color: var(--mdx-base-color-grey-0);
+}
+
+.badge-soll {
+  background: var(--mdx-base-color-harvest-gold-600);
+  color: var(--mdx-base-color-grey-1000);
+}
+
+.badge-kann {
+  background: var(--mdx-base-color-apple-green-600);
+  color: var(--mdx-base-color-grey-0);
+}
+
+/* ================================================================
+   Keyboard (kbd)
+   ================================================================ */
+
+kbd {
+  font-family: var(--mags-font-micro);
+  font-size: 0.8em;
+  padding: 0.1em 0.4em;
+  border: var(--mdx-base-border-width-xs) solid var(--mags-color-border);
+  border-radius: var(--mdx-base-border-radius-sm);
+  background: var(--mags-color-bg-subtle);
+  box-shadow: var(--mdx-base-shadow-light);
+}
+
+/* ================================================================
+   Druckstile
+   ================================================================ */
+
+@media print {
+  .skip-link,
+  .page-footer {
+    display: none;
+  }
+
+  body {
+    font-size: 11pt;
+    color: #000;
+    background: #fff;
+  }
+
+  a {
+    color: #000;
+    text-decoration: underline;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+  }
+}

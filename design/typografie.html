@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Typografie – MAGS</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <div class="page">
+    <header class="page-header">
+      <a href="../index.html">
+        <p class="site-title">MAGS</p>
+        <p class="site-subtitle">Migros Accessibility Guidelines &amp; Standards</p>
+      </a>
+    </header>
+
+    <main id="main" class="page-main">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../index.html">MAGS</a></li>
+          <li><a href="typografie.html" aria-current="page">Typografie</a></li>
+        </ol>
+      </nav>
+
+      <h1>Typografie</h1>
+
+      <h2>Schriftgrösse <span class="badge badge-muss">Muss</span></h2>
+      <ul>
+        <li>Basis-Schriftgrösse in <code>rem</code> oder <code>em</code> definieren, nicht in <code>px</code></li>
+        <li>Browser-Standardgrösse respektieren (<code>font-size: 100%</code> auf <code>html</code>)</li>
+        <li>Text muss bis 200% vergrösserbar sein ohne Informationsverlust (WCAG 1.4.4)</li>
+      </ul>
+
+      <h2>Zeilenabstand &amp; Textfluss <span class="badge badge-muss">Muss</span></h2>
+      <ul>
+        <li>Zeilenabstand (<code>line-height</code>): mindestens 1.5 für Fliesstext</li>
+        <li>Absatzabstand: mindestens 1.5× die Schriftgrösse</li>
+        <li>Wortabstand: mindestens 0.16× die Schriftgrösse</li>
+        <li>Buchstabenabstand: mindestens 0.12× die Schriftgrösse</li>
+      </ul>
+      <p>Diese Werte entsprechen WCAG 1.4.12 (Text Spacing). Die Seite darf bei diesen Einstellungen nicht brechen.</p>
+
+      <h2>Zeilenlänge <span class="badge badge-soll">Soll</span></h2>
+      <p>Zeilen sollen nicht breiter als 80 Zeichen (ca. 52rem) sein, um die Lesbarkeit zu gewährleisten.</p>
+
+      <h2>Schriftwahl <span class="badge badge-soll">Soll</span></h2>
+      <ul>
+        <li>Gut lesbare Schriftarten bevorzugen (klare Unterscheidung von I, l, 1, O, 0)</li>
+        <li>Systemschriften als Fallback definieren</li>
+        <li>Auf ausreichende Lesbarkeit in kleinen Grössen achten</li>
+      </ul>
+
+      <h2>Textausrichtung <span class="badge badge-soll">Soll</span></h2>
+      <p>Blocksatz (<code>text-align: justify</code>) vermeiden – ungleichmässige Wortabstände erschweren das Lesen, insbesondere für Menschen mit Legasthenie.</p>
+    </main>
+
+    <footer class="page-footer">
+      <p>MAGS – Migros Accessibility Guidelines &amp; Standards · <a href="../index.html">Zurück zur Übersicht</a></p>
+    </footer>
+  </div>
+</body>
+</html>

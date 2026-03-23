@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bilder &amp; Alt-Texte – MAGS</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <div class="page">
+    <header class="page-header">
+      <a href="../index.html">
+        <p class="site-title">MAGS</p>
+        <p class="site-subtitle">Migros Accessibility Guidelines &amp; Standards</p>
+      </a>
+    </header>
+
+    <main id="main" class="page-main">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../index.html">MAGS</a></li>
+          <li><a href="bilder.html" aria-current="page">Bilder &amp; Alt-Texte</a></li>
+        </ol>
+      </nav>
+
+      <h1>Bilder &amp; Alt-Texte</h1>
+
+      <h2>Alt-Text-Entscheidung <span class="badge badge-muss">Muss</span></h2>
+      <table>
+        <caption>Wann welcher Alt-Text</caption>
+        <thead>
+          <tr>
+            <th scope="col">Bildtyp</th>
+            <th scope="col">Alt-Attribut</th>
+            <th scope="col">Beispiel</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Informatives Bild</td>
+            <td>Beschreibender Text</td>
+            <td><code>alt="Yoga-Kurs in der Klubschule Zürich"</code></td>
+          </tr>
+          <tr>
+            <td>Dekoratives Bild</td>
+            <td>Leeres alt</td>
+            <td><code>alt=""</code></td>
+          </tr>
+          <tr>
+            <td>Funktionales Bild (Link/Button)</td>
+            <td>Funktion beschreiben</td>
+            <td><code>alt="Zur Startseite"</code></td>
+          </tr>
+          <tr>
+            <td>Komplexes Bild (Diagramm)</td>
+            <td>Kurzbeschreibung + ausführliche Alternative</td>
+            <td><code>alt="Teilnehmerzahlen 2024"</code> + Tabelle im Text</td>
+          </tr>
+          <tr>
+            <td>Text im Bild</td>
+            <td>Gesamter Text im Bild</td>
+            <td><code>alt="Anmeldeschluss: 15. März 2025"</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Gute Alt-Texte schreiben</h2>
+      <ul>
+        <li>Kurz und prägnant (in der Regel unter 125 Zeichen)</li>
+        <li>Nicht mit «Bild von…» oder «Foto von…» beginnen – der Screenreader sagt bereits «Grafik»</li>
+        <li>Die Funktion beschreiben, nicht das Aussehen (bei funktionalen Bildern)</li>
+        <li>Kontext berücksichtigen: derselbe Bildinhalt kann je nach Umgebung andere Alt-Texte brauchen</li>
+      </ul>
+
+      <h2>CSS-Hintergrundbilder <span class="badge badge-muss">Muss</span></h2>
+      <p>Bilder, die über CSS (<code>background-image</code>) eingebunden werden, sind für Screenreader unsichtbar. Informative Bilder müssen daher immer als <code>&lt;img&gt;</code> eingebunden werden.</p>
+
+      <h2>SVG <span class="badge badge-muss">Muss</span></h2>
+      <pre><code>&lt;!-- Dekoratives SVG --&gt;
+&lt;svg aria-hidden="true" focusable="false"&gt;...&lt;/svg&gt;
+
+&lt;!-- Informatives SVG --&gt;
+&lt;svg role="img" aria-label="Warnung"&gt;...&lt;/svg&gt;</code></pre>
+    </main>
+
+    <footer class="page-footer">
+      <p>MAGS – Migros Accessibility Guidelines &amp; Standards · <a href="../index.html">Zurück zur Übersicht</a></p>
+    </footer>
+  </div>
+</body>
+</html>

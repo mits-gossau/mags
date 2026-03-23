@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Automatisierte Tests – MAGS</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <div class="page">
+    <header class="page-header">
+      <a href="../index.html">
+        <p class="site-title">MAGS</p>
+        <p class="site-subtitle">Migros Accessibility Guidelines &amp; Standards</p>
+      </a>
+    </header>
+
+    <main id="main" class="page-main">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../index.html">MAGS</a></li>
+          <li><a href="automatisiert.html" aria-current="page">Automatisierte Tests</a></li>
+        </ol>
+      </nav>
+
+      <h1>Automatisierte Tests</h1>
+
+      <aside class="hinweis">
+        <p><strong>Wichtig:</strong> Automatisierte Tests können nur ca. 30–40% der Barrierefreiheitsprobleme erkennen. Sie ersetzen keine manuellen Tests und Screenreader-Prüfungen.</p>
+      </aside>
+
+      <h2>Empfohlene Werkzeuge</h2>
+      <table>
+        <caption>Automatisierte A11y-Testwerkzeuge</caption>
+        <thead>
+          <tr>
+            <th scope="col">Werkzeug</th>
+            <th scope="col">Einsatz</th>
+            <th scope="col">Integration</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="https://github.com/dequelabs/axe-core" hreflang="en">axe-core</a></td>
+            <td>Regelbasierter A11y-Test</td>
+            <td>CI/CD, Browser-Extension, Playwright</td>
+          </tr>
+          <tr>
+            <td>Lighthouse</td>
+            <td>Performance + A11y Audit</td>
+            <td>Chrome DevTools, CI/CD</td>
+          </tr>
+          <tr>
+            <td><a href="https://github.com/pa11y/pa11y" hreflang="en">pa11y</a></td>
+            <td>Kommandozeilen-A11y-Test</td>
+            <td>CI/CD</td>
+          </tr>
+          <tr>
+            <td>W3C Validator</td>
+            <td>HTML-Validierung</td>
+            <td>Online, CI/CD</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>CI/CD-Integration <span class="badge badge-soll">Soll</span></h2>
+      <p>A11y-Tests sollen in die CI/CD-Pipeline integriert werden, sodass Regressionen automatisch erkannt werden.</p>
+
+      <h2>Was automatisiert prüfbar ist</h2>
+      <ul>
+        <li>Fehlende Alt-Texte</li>
+        <li>Kontrastverhältnisse</li>
+        <li>Fehlende Labels bei Formularfeldern</li>
+        <li>Fehlende Landmarks</li>
+        <li>Ungültige ARIA-Attribute</li>
+        <li>Übersprungene Heading-Ebenen</li>
+        <li>Fehlende Sprach-Attribute</li>
+      </ul>
+
+      <h2>Was NICHT automatisiert prüfbar ist</h2>
+      <ul>
+        <li>Qualität von Alt-Texten</li>
+        <li>Sinnvolle Tab-Reihenfolge</li>
+        <li>Verständlichkeit von Inhalten</li>
+        <li>Korrekte Screenreader-Ausgabe</li>
+        <li>Sinnvolle Fokus-Verwaltung bei dynamischen Inhalten</li>
+      </ul>
+    </main>
+
+    <footer class="page-footer">
+      <p>MAGS – Migros Accessibility Guidelines &amp; Standards · <a href="../index.html">Zurück zur Übersicht</a></p>
+    </footer>
+  </div>
+</body>
+</html>

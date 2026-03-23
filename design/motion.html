@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Motion &amp; Animation – MAGS</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <div class="page">
+    <header class="page-header">
+      <a href="../index.html">
+        <p class="site-title">MAGS</p>
+        <p class="site-subtitle">Migros Accessibility Guidelines &amp; Standards</p>
+      </a>
+    </header>
+
+    <main id="main" class="page-main">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../index.html">MAGS</a></li>
+          <li><a href="motion.html" aria-current="page">Motion &amp; Animation</a></li>
+        </ol>
+      </nav>
+
+      <h1>Motion &amp; Animation</h1>
+
+      <h2>prefers-reduced-motion <span class="badge badge-muss">Muss</span></h2>
+      <p>Alle Animationen und Übergänge müssen <code>prefers-reduced-motion</code> respektieren (WCAG 2.3.3).</p>
+
+      <pre><code>@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}</code></pre>
+
+      <h2>Kein Blinken <span class="badge badge-muss">Muss</span></h2>
+      <p>Inhalte dürfen nicht mehr als dreimal pro Sekunde blinken (WCAG 2.3.1). Dies kann bei betroffenen Menschen epileptische Anfälle auslösen.</p>
+
+      <h2>Automatische Bewegung <span class="badge badge-muss">Muss</span></h2>
+      <p>Automatisch startende Bewegungen, Scrolls oder Aktualisierungen müssen pausierbar, stoppbar oder ausblendbar sein (WCAG 2.2.2), wenn sie:</p>
+      <ul>
+        <li>Länger als 5 Sekunden dauern</li>
+        <li>Parallel zu anderen Inhalten dargestellt werden</li>
+      </ul>
+
+      <h2>Karussells &amp; Slider <span class="badge badge-soll">Soll</span></h2>
+      <p>Automatisch rotierende Karussells sollen vermieden werden. Falls eingesetzt:</p>
+      <ul>
+        <li>Pause-Button bereitstellen</li>
+        <li>Bei Hover und Fokus automatisch pausieren</li>
+        <li>Navigation mit Tastatur ermöglichen</li>
+      </ul>
+    </main>
+
+    <footer class="page-footer">
+      <p>MAGS – Migros Accessibility Guidelines &amp; Standards · <a href="../index.html">Zurück zur Übersicht</a></p>
+    </footer>
+  </div>
+</body>
+</html>

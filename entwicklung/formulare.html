@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Formulare – MAGS</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <div class="page">
+    <header class="page-header">
+      <a href="../index.html">
+        <p class="site-title">MAGS</p>
+        <p class="site-subtitle">Migros Accessibility Guidelines &amp; Standards</p>
+      </a>
+    </header>
+
+    <main id="main" class="page-main">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../index.html">MAGS</a></li>
+          <li><a href="formulare.html" aria-current="page">Formulare</a></li>
+        </ol>
+      </nav>
+
+      <h1>Formulare</h1>
+
+      <h2>Labels <span class="badge badge-muss">Muss</span></h2>
+      <p>Jedes Eingabefeld muss ein sichtbares, programmatisch verknüpftes Label haben.</p>
+      <pre><code>&lt;!-- Richtig: Explizites Label --&gt;
+&lt;label for="email"&gt;E-Mail-Adresse&lt;/label&gt;
+&lt;input type="email" id="email" name="email"&gt;
+
+&lt;!-- Richtig: Implizites Label --&gt;
+&lt;label&gt;
+  E-Mail-Adresse
+  &lt;input type="email" name="email"&gt;
+&lt;/label&gt;
+
+&lt;!-- Falsch: Kein Label --&gt;
+&lt;input type="email" placeholder="E-Mail"&gt;</code></pre>
+
+      <aside class="hinweis">
+        <p><strong>Wichtig:</strong> <code>placeholder</code> ist kein Ersatz für ein Label. Placeholders verschwinden bei der Eingabe und haben oft ungenügenden Kontrast.</p>
+      </aside>
+
+      <h2>Gruppierung <span class="badge badge-muss">Muss</span></h2>
+      <p>Zusammengehörige Felder (z.B. Radio-Buttons, Checkboxen) müssen mit <code>&lt;fieldset&gt;</code> und <code>&lt;legend&gt;</code> gruppiert werden.</p>
+      <pre><code>&lt;fieldset&gt;
+  &lt;legend&gt;Bevorzugte Kontaktart&lt;/legend&gt;
+  &lt;label&gt;&lt;input type="radio" name="contact" value="email"&gt; E-Mail&lt;/label&gt;
+  &lt;label&gt;&lt;input type="radio" name="contact" value="phone"&gt; Telefon&lt;/label&gt;
+&lt;/fieldset&gt;</code></pre>
+
+      <h2>Fehlermeldungen <span class="badge badge-muss">Muss</span></h2>
+      <ul>
+        <li>Fehler müssen in Textform beschrieben werden (nicht nur durch Farbe)</li>
+        <li>Fehlermeldungen müssen programmatisch mit dem Feld verknüpft sein (<code>aria-describedby</code>)</li>
+        <li>Felder mit Fehlern müssen als <code>aria-invalid="true"</code> markiert werden</li>
+        <li>Fehler sollen beim Auftreten angekündigt werden (<code>role="alert"</code> oder <code>aria-live</code>)</li>
+      </ul>
+
+      <h2>Pflichtfelder <span class="badge badge-muss">Muss</span></h2>
+      <p>Pflichtfelder müssen mit <code>required</code> oder <code>aria-required="true"</code> gekennzeichnet werden. Zusätzlich soll visuell erkennbar sein, welche Felder erforderlich sind.</p>
+
+      <h2>Autocomplete <span class="badge badge-muss">Muss</span></h2>
+      <p>Felder für persönliche Daten müssen das passende <code>autocomplete</code>-Attribut verwenden (WCAG 1.3.5).</p>
+      <pre><code>&lt;input type="text" autocomplete="given-name" name="vorname"&gt;
+&lt;input type="text" autocomplete="family-name" name="nachname"&gt;
+&lt;input type="email" autocomplete="email" name="email"&gt;
+&lt;input type="tel" autocomplete="tel" name="telefon"&gt;</code></pre>
+
+      <h2>Redundante Eingaben vermeiden <span class="badge badge-muss">Muss</span></h2>
+      <p>Bereits eingegebene Informationen dürfen nicht erneut abgefragt werden (WCAG 3.3.7), es sei denn, es ist aus Sicherheitsgründen notwendig.</p>
+    </main>
+
+    <footer class="page-footer">
+      <p>MAGS – Migros Accessibility Guidelines &amp; Standards · <a href="../index.html">Zurück zur Übersicht</a></p>
+    </footer>
+  </div>
+</body>
+</html>

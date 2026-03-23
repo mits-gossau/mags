@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Tastaturnavigation – MAGS</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <div class="page">
+    <header class="page-header">
+      <a href="../index.html">
+        <p class="site-title">MAGS</p>
+        <p class="site-subtitle">Migros Accessibility Guidelines &amp; Standards</p>
+      </a>
+    </header>
+
+    <main id="main" class="page-main">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../index.html">MAGS</a></li>
+          <li><a href="tastatur.html" aria-current="page">Tastaturnavigation</a></li>
+        </ol>
+      </nav>
+
+      <h1>Tastaturnavigation</h1>
+
+      <h2>Vollständige Tastaturzugänglichkeit <span class="badge badge-muss">Muss</span></h2>
+      <p>Alle Funktionen müssen mit der Tastatur erreichbar und bedienbar sein (WCAG 2.1.1). Es darf keine Tastaturfalle entstehen (WCAG 2.1.2).</p>
+
+      <h2>Skip-Links <span class="badge badge-muss">Muss</span></h2>
+      <p>Jede Seite muss einen Skip-Link bereitstellen, der bei Fokus sichtbar wird und zum Hauptinhalt springt (WCAG 2.4.1).</p>
+      <pre><code>&lt;body&gt;
+  &lt;a class="skip-link" href="#main"&gt;Zum Inhalt springen&lt;/a&gt;
+  &lt;header&gt;...&lt;/header&gt;
+  &lt;main id="main"&gt;...&lt;/main&gt;
+&lt;/body&gt;</code></pre>
+
+      <h2>Tab-Reihenfolge <span class="badge badge-muss">Muss</span></h2>
+      <p>Die Tab-Reihenfolge muss der visuellen und logischen Reihenfolge entsprechen (WCAG 2.4.3).</p>
+      <ul>
+        <li><code>tabindex="0"</code> – Element in natürliche Tab-Reihenfolge aufnehmen</li>
+        <li><code>tabindex="-1"</code> – Programmatisch fokussierbar, aber nicht in Tab-Reihenfolge</li>
+        <li><code>tabindex="1+"</code> – <strong>Niemals verwenden.</strong> Verursacht unvorhersehbare Reihenfolgen.</li>
+      </ul>
+
+      <h2>Focus-Trapping (Modale Dialoge) <span class="badge badge-muss">Muss</span></h2>
+      <p>In modalen Dialogen muss der Fokus innerhalb des Dialogs gehalten werden. Beim Schliessen muss der Fokus zum auslösenden Element zurückkehren.</p>
+
+      <h2>Tastaturmuster für Widgets</h2>
+      <table>
+        <caption>Erwartete Tastaturinteraktion nach WAI-ARIA Authoring Practices</caption>
+        <thead>
+          <tr>
+            <th scope="col">Widget</th>
+            <th scope="col">Tasten</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Tabs</td>
+            <td>Pfeiltasten zwischen Tabs, Tab zum Inhalt</td>
+          </tr>
+          <tr>
+            <td>Dropdown-Menü</td>
+            <td>Enter/Space öffnen, Pfeiltasten navigieren, Escape schliessen</td>
+          </tr>
+          <tr>
+            <td>Dialog</td>
+            <td>Tab innerhalb, Escape schliessen</td>
+          </tr>
+          <tr>
+            <td>Accordion</td>
+            <td>Enter/Space öffnen/schliessen, Pfeiltasten zwischen Headers</td>
+          </tr>
+        </tbody>
+      </table>
+    </main>
+
+    <footer class="page-footer">
+      <p>MAGS – Migros Accessibility Guidelines &amp; Standards · <a href="../index.html">Zurück zur Übersicht</a></p>
+    </footer>
+  </div>
+</body>
+</html>

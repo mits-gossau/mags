@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sprache &amp; Verständlichkeit – MAGS</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <div class="page">
+    <header class="page-header">
+      <a href="../index.html">
+        <p class="site-title">MAGS</p>
+        <p class="site-subtitle">Migros Accessibility Guidelines &amp; Standards</p>
+      </a>
+    </header>
+
+    <main id="main" class="page-main">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../index.html">MAGS</a></li>
+          <li><a href="sprache.html" aria-current="page">Sprache &amp; Verständlichkeit</a></li>
+        </ol>
+      </nav>
+
+      <h1>Sprache &amp; Verständlichkeit</h1>
+
+      <h2>Einfache Sprache <span class="badge badge-soll">Soll</span></h2>
+      <ul>
+        <li>Kurze Sätze (max. 20 Wörter als Richtwert)</li>
+        <li>Aktive statt passive Formulierungen</li>
+        <li>Fachbegriffe erklären oder vermeiden</li>
+        <li>Abkürzungen bei erster Verwendung ausschreiben</li>
+      </ul>
+
+      <h2>Seitensprache <span class="badge badge-muss">Muss</span></h2>
+      <p>Die Hauptsprache der Seite muss im <code>lang</code>-Attribut des <code>&lt;html&gt;</code>-Elements definiert sein (WCAG 3.1.1). Fremdsprachige Passagen erhalten ein eigenes <code>lang</code>-Attribut (WCAG 3.1.2).</p>
+
+      <h2>Seitentitel <span class="badge badge-muss">Muss</span></h2>
+      <p>Jede Seite muss einen beschreibenden, einzigartigen <code>&lt;title&gt;</code> haben (WCAG 2.4.2). Empfohlenes Muster:</p>
+      <pre><code>&lt;title&gt;Seitenname – Bereich – Website&lt;/title&gt;
+&lt;!-- z.B.: Yoga für Einsteiger – Kurse – Klubschule Migros --&gt;</code></pre>
+
+      <h2>Link-Texte <span class="badge badge-muss">Muss</span></h2>
+      <p>Links müssen aus dem Kontext heraus verständlich sein (WCAG 2.4.4).</p>
+      <ul>
+        <li>❌ «Hier klicken», «Mehr», «Link»</li>
+        <li>✅ «Alle Yoga-Kurse anzeigen», «Anmeldeformular herunterladen (PDF, 240 KB)»</li>
+      </ul>
+
+      <h2>Konsistente Hilfe <span class="badge badge-muss">Muss</span></h2>
+      <p>Hilfemechanismen (Kontakt, FAQ, Chat) müssen auf allen Seiten an derselben Stelle platziert sein (WCAG 3.2.6).</p>
+    </main>
+
+    <footer class="page-footer">
+      <p>MAGS – Migros Accessibility Guidelines &amp; Standards · <a href="../index.html">Zurück zur Übersicht</a></p>
+    </footer>
+  </div>
+</body>
+</html>

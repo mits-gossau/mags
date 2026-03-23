@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Anti-Patterns – MAGS</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <div class="page">
+    <header class="page-header">
+      <a href="../index.html">
+        <p class="site-title">MAGS</p>
+        <p class="site-subtitle">Migros Accessibility Guidelines &amp; Standards</p>
+      </a>
+    </header>
+
+    <main id="main" class="page-main">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../index.html">MAGS</a></li>
+          <li><a href="schlecht.html" aria-current="page">Anti-Patterns</a></li>
+        </ol>
+      </nav>
+
+      <h1>Anti-Patterns – Häufige Fehler</h1>
+      <p>Diese Seite zeigt häufige Barrierefreiheitsfehler und ihre korrekten Alternativen. Die fehlerhaften Beispiele sind als Code dargestellt, nicht als funktionierendes HTML, um selbst keine Barrieren zu erzeugen.</p>
+
+      <h2>❌ Div als Button</h2>
+      <pre><code>&lt;!-- Falsch --&gt;
+&lt;div class="btn" onclick="doSomething()"&gt;Klick mich&lt;/div&gt;
+
+&lt;!-- Richtig --&gt;
+&lt;button type="button" onclick="doSomething()"&gt;Klick mich&lt;/button&gt;</code></pre>
+      <p><strong>Problem:</strong> Nicht fokussierbar, keine Rolle, kein Tastatur-Event, nicht im Accessibility Tree.</p>
+
+      <h2>❌ Fehlende Labels</h2>
+      <pre><code>&lt;!-- Falsch --&gt;
+&lt;input type="text" placeholder="Suchbegriff eingeben"&gt;
+
+&lt;!-- Richtig --&gt;
+&lt;label for="search"&gt;Suchbegriff&lt;/label&gt;
+&lt;input type="text" id="search" placeholder="z.B. Yoga, Spanisch"&gt;</code></pre>
+      <p><strong>Problem:</strong> Placeholder ist kein Label. Verschwindet bei Eingabe. Oft zu geringer Kontrast.</p>
+
+      <h2>❌ outline: none ohne Ersatz</h2>
+      <pre><code>&lt;!-- Falsch --&gt;
+*:focus { outline: none; }
+
+&lt;!-- Richtig --&gt;
+*:focus-visible {
+  outline: 3px solid #1a56c2;
+  outline-offset: 2px;
+}</code></pre>
+      <p><strong>Problem:</strong> Tastaturnutzer sehen nicht, welches Element fokussiert ist.</p>
+
+      <h2>❌ Bild ohne Alt-Text</h2>
+      <pre><code>&lt;!-- Falsch --&gt;
+&lt;img src="kurs.jpg"&gt;
+
+&lt;!-- Richtig (informativ) --&gt;
+&lt;img src="kurs.jpg" alt="Teilnehmer beim Keramikkurs"&gt;
+
+&lt;!-- Richtig (dekorativ) --&gt;
+&lt;img src="trenner.png" alt=""&gt;</code></pre>
+      <p><strong>Problem:</strong> Screenreader liest den Dateinamen vor.</p>
+
+      <h2>❌ Nichtssagende Linktexte</h2>
+      <pre><code>&lt;!-- Falsch --&gt;
+&lt;a href="/kurse"&gt;Hier klicken&lt;/a&gt;
+&lt;a href="/kurse"&gt;Mehr&lt;/a&gt;
+&lt;a href="/kurse"&gt;Link&lt;/a&gt;
+
+&lt;!-- Richtig --&gt;
+&lt;a href="/kurse"&gt;Alle Kurse anzeigen&lt;/a&gt;</code></pre>
+      <p><strong>Problem:</strong> In der Screenreader-Link-Liste erscheinen nur «Hier klicken», «Mehr», «Link» – ohne Kontext.</p>
+
+      <h2>❌ Falsche Heading-Hierarchie</h2>
+      <pre><code>&lt;!-- Falsch --&gt;
+&lt;h1&gt;Willkommen&lt;/h1&gt;
+&lt;h4&gt;Unsere Kurse&lt;/h4&gt;  &lt;!-- h2, h3 übersprungen --&gt;
+
+&lt;!-- Richtig --&gt;
+&lt;h1&gt;Willkommen&lt;/h1&gt;
+&lt;h2&gt;Unsere Kurse&lt;/h2&gt;</code></pre>
+      <p><strong>Problem:</strong> Screenreader-Nutzer navigieren über Headings. Übersprungene Ebenen verwirren die Seitenstruktur.</p>
+
+      <h2>❌ Tabindex grösser als 0</h2>
+      <pre><code>&lt;!-- Falsch --&gt;
+&lt;button tabindex="5"&gt;Zuerst&lt;/button&gt;
+&lt;button tabindex="1"&gt;Dann&lt;/button&gt;
+
+&lt;!-- Richtig: Natürliche DOM-Reihenfolge verwenden --&gt;
+&lt;button&gt;Zuerst&lt;/button&gt;
+&lt;button&gt;Dann&lt;/button&gt;</code></pre>
+      <p><strong>Problem:</strong> Positive tabindex-Werte erzeugen unvorhersehbare und schwer wartbare Tab-Reihenfolgen.</p>
+
+      <h2>❌ Autoplay mit Ton</h2>
+      <pre><code>&lt;!-- Falsch --&gt;
+&lt;video autoplay&gt;
+  &lt;source src="intro.mp4"&gt;
+&lt;/video&gt;
+
+&lt;!-- Richtig --&gt;
+&lt;video controls muted&gt;
+  &lt;source src="intro.mp4"&gt;
+  &lt;track kind="captions" src="intro-de.vtt" srclang="de" label="Deutsch"&gt;
+&lt;/video&gt;</code></pre>
+      <p><strong>Problem:</strong> Automatischer Ton stört Screenreader-Nutzung und kann nicht kontrolliert werden.</p>
+    </main>
+
+    <footer class="page-footer">
+      <p>MAGS – Migros Accessibility Guidelines &amp; Standards · <a href="../index.html">Zurück zur Übersicht</a></p>
+    </footer>
+  </div>
+</body>
+</html>

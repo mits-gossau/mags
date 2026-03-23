@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ARIA – MAGS</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <div class="page">
+    <header class="page-header">
+      <a href="../index.html">
+        <p class="site-title">MAGS</p>
+        <p class="site-subtitle">Migros Accessibility Guidelines &amp; Standards</p>
+      </a>
+    </header>
+
+    <main id="main" class="page-main">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../index.html">MAGS</a></li>
+          <li><a href="aria.html" aria-current="page">ARIA</a></li>
+        </ol>
+      </nav>
+
+      <h1>ARIA</h1>
+
+      <h2>Die fünf Regeln von ARIA <span class="badge badge-muss">Muss</span></h2>
+      <ol>
+        <li><strong>Kein ARIA ist besser als schlechtes ARIA.</strong> Natives HTML verwenden, wenn möglich.</li>
+        <li><strong>Keine nativen Semantiken überschreiben.</strong> Nicht <code>&lt;h2 role="tab"&gt;</code>.</li>
+        <li><strong>Alle interaktiven ARIA-Elemente müssen per Tastatur bedienbar sein.</strong></li>
+        <li><strong>Fokussierbare Elemente nicht mit <code>role="presentation"</code> oder <code>aria-hidden="true"</code> versehen.</strong></li>
+        <li><strong>Alle interaktiven Elemente brauchen einen zugänglichen Namen.</strong></li>
+      </ol>
+
+      <h2>Wann ARIA verwenden? <span class="badge badge-muss">Muss</span></h2>
+      <table>
+        <caption>Natives HTML vs. ARIA</caption>
+        <thead>
+          <tr>
+            <th scope="col">Statt ARIA</th>
+            <th scope="col">Natives HTML verwenden</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>role="button"</code></td>
+            <td><code>&lt;button&gt;</code></td>
+          </tr>
+          <tr>
+            <td><code>role="link"</code></td>
+            <td><code>&lt;a href&gt;</code></td>
+          </tr>
+          <tr>
+            <td><code>role="navigation"</code></td>
+            <td><code>&lt;nav&gt;</code></td>
+          </tr>
+          <tr>
+            <td><code>role="checkbox"</code></td>
+            <td><code>&lt;input type="checkbox"&gt;</code></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>Häufig benötigte ARIA-Attribute</h2>
+
+      <h3>Zugängliche Namen</h3>
+      <pre><code>&lt;!-- Sichtbares Label --&gt;
+&lt;button aria-label="Menü schliessen"&gt;✕&lt;/button&gt;
+
+&lt;!-- Label referenzieren --&gt;
+&lt;div aria-labelledby="dialog-title"&gt;
+  &lt;h2 id="dialog-title"&gt;Konto löschen&lt;/h2&gt;
+&lt;/div&gt;</code></pre>
+
+      <h3>Zustände</h3>
+      <pre><code>&lt;button aria-expanded="false" aria-controls="menu"&gt;Menü&lt;/button&gt;
+&lt;ul id="menu" hidden&gt;...&lt;/ul&gt;
+
+&lt;input aria-invalid="true" aria-describedby="error-msg"&gt;
+&lt;p id="error-msg"&gt;Pflichtfeld&lt;/p&gt;</code></pre>
+
+      <h3>Live Regions</h3>
+      <pre><code>&lt;!-- Für Statusmeldungen --&gt;
+&lt;div aria-live="polite" role="status"&gt;3 Ergebnisse gefunden.&lt;/div&gt;
+
+&lt;!-- Für dringende Meldungen --&gt;
+&lt;div aria-live="assertive" role="alert"&gt;Sitzung läuft in 2 Minuten ab.&lt;/div&gt;</code></pre>
+
+      <aside class="hinweis">
+        <p><strong>Tipp:</strong> ARIA fügt nur Semantik hinzu – kein Verhalten. Ein <code>role="button"</code> auf einem <code>&lt;div&gt;</code> macht es nicht per Tastatur bedienbar. Dafür braucht es zusätzlich <code>tabindex="0"</code> und Keyboard-Event-Handler.</p>
+      </aside>
+    </main>
+
+    <footer class="page-footer">
+      <p>MAGS – Migros Accessibility Guidelines &amp; Standards · <a href="../index.html">Zurück zur Übersicht</a></p>
+    </footer>
+  </div>
+</body>
+</html>
