@@ -91,6 +91,59 @@
       <aside class="hinweis">
         <p><strong>Wichtig:</strong> Niemals <code>&lt;div onclick&gt;</code> oder <code>&lt;span onclick&gt;</code> als Ersatz für Links oder Buttons verwenden. Diese Elemente sind nicht fokussierbar und werden von Screenreadern nicht als interaktiv erkannt.</p>
       </aside>
+
+      <h2>Tabellen <span class="badge badge-muss">Muss</span></h2>
+      <p>Datentabellen müssen korrekt semantisch ausgezeichnet werden:</p>
+      <ul>
+        <li><code>&lt;table&gt;</code>, <code>&lt;thead&gt;</code>, <code>&lt;tbody&gt;</code> für die Tabellenstruktur</li>
+        <li><code>&lt;th scope="col"&gt;</code> für Spaltenüberschriften</li>
+        <li><code>&lt;th scope="row"&gt;</code> für Zeilenüberschriften</li>
+        <li><code>&lt;caption&gt;</code> als Titel/Beschreibung der Tabelle</li>
+      </ul>
+      <pre><code>&lt;table&gt;
+  &lt;caption&gt;Kursangebot Frühling 2026&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th scope="col"&gt;Kurs&lt;/th&gt;
+      &lt;th scope="col"&gt;Startdatum&lt;/th&gt;
+      &lt;th scope="col"&gt;Preis&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Yoga&lt;/td&gt;
+      &lt;td&gt;15. April 2026&lt;/td&gt;
+      &lt;td&gt;CHF 280.–&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+      <p>Layouttabellen vermeiden. Falls unvermeidbar: <code>role="presentation"</code> setzen, damit Screenreader sie nicht als Datentabelle interpretieren.</p>
+
+      <h2>Visually Hidden <span class="badge badge-muss">Muss</span></h2>
+      <p>Texte, die nur für Screenreader bestimmt sind (visuell nicht sichtbar, aber im Accessibility Tree vorhanden), müssen mit einem bewährten CSS-Pattern versteckt werden:</p>
+      <pre><code>.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}</code></pre>
+      <p><strong>Nicht verwenden:</strong></p>
+      <ul>
+        <li><code>display: none</code> – versteckt auch für Screenreader</li>
+        <li><code>visibility: hidden</code> – versteckt auch für Screenreader</li>
+        <li><code>aria-hidden="true"</code> – entfernt aus dem Accessibility Tree</li>
+      </ul>
+      <h3>Anwendungsbeispiele</h3>
+      <ul>
+        <li>Icon-Buttons: <code>&lt;button&gt;&lt;svg aria-hidden="true"&gt;...&lt;/svg&gt;&lt;span class="visually-hidden"&gt;Menü öffnen&lt;/span&gt;&lt;/button&gt;</code></li>
+        <li>Scroll-to-Top: <code>&lt;button&gt;&lt;span class="visually-hidden"&gt;Nach oben scrollen&lt;/span&gt;&lt;/button&gt;</code></li>
+        <li>Ergänzender Kontext: <code>&lt;a href="/kurse"&gt;Alle anzeigen &lt;span class="visually-hidden"&gt;Kurse in Zürich&lt;/span&gt;&lt;/a&gt;</code></li>
+      </ul>
     </main>
 
     <footer class="page-footer">

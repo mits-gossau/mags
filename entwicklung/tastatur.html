@@ -77,6 +77,17 @@
           </tr>
         </tbody>
       </table>
+
+      <h2>Tastenkürzel-Konflikte <span class="badge badge-muss">Muss</span></h2>
+      <p>Wenn Tastenkürzel mit einzelnen Buchstaben, Ziffern oder Sonderzeichen implementiert werden (WCAG 2.1.4), muss mindestens eine der folgenden Bedingungen erfüllt sein:</p>
+      <ul>
+        <li><strong>Abschaltbar:</strong> Es gibt einen Mechanismus, um das Tastenkürzel zu deaktivieren.</li>
+        <li><strong>Umkonfigurierbar:</strong> Das Tastenkürzel kann auf eine andere Taste (inkl. Modifier-Tasten) umgelegt werden.</li>
+        <li><strong>Nur bei Fokus aktiv:</strong> Das Tastenkürzel ist nur aktiv, wenn die zugehörige Komponente fokussiert ist.</li>
+      </ul>
+      <aside class="hinweis">
+        <p><strong>Hintergrund:</strong> Einzelbuchstaben-Shortcuts kollidieren mit Sprachsteuerungssoftware (z.B. Dragon NaturallySpeaking) und Screenreader-Befehlen. Im Zweifel keine Single-Character-Shortcuts einführen oder immer einen Modifier (Ctrl, Alt) verlangen.</p>
+      </aside>
     </main>
 
     <footer class="page-footer">
