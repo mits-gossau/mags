@@ -577,6 +577,108 @@ li {
 }
 
 /* ================================================================
+   Formulare
+   ================================================================ */
+
+fieldset {
+  border: var(--mdx-base-border-width-xs) solid var(--mags-color-border);
+  border-radius: var(--mdx-base-border-radius-md);
+  padding: var(--mdx-base-spacing-unit-4x);
+  margin: 0;
+}
+
+legend {
+  font-family: var(--mags-font-display);
+  font-weight: 700;
+  font-size: 1.25rem;
+  padding: 0 var(--mdx-base-spacing-unit-1x);
+}
+
+label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: var(--mdx-base-spacing-unit-0-5x);
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="url"],
+input[type="search"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+  display: block;
+  width: 100%;
+  font-family: var(--mags-font-body);
+  font-size: 1rem;
+  line-height: 1.375;
+  color: var(--mags-color-text);
+  background: var(--mags-color-bg);
+  border: var(--mdx-base-border-width-xs) solid var(--mags-color-border);
+  border-radius: var(--mdx-base-border-radius-sm);
+  padding: var(--mdx-base-spacing-unit-1-5x) var(--mdx-base-spacing-unit-2x);
+  transition: border-color var(--mdx-base-motion-time-150) var(--mdx-base-motion-easing-ease-out-medium),
+              box-shadow var(--mdx-base-motion-time-150) var(--mdx-base-motion-easing-ease-out-medium);
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--mags-color-focus);
+  outline-offset: 1px;
+  border-color: var(--mags-color-focus);
+}
+
+input[aria-invalid="true"],
+textarea[aria-invalid="true"] {
+  border-color: var(--mags-color-error);
+}
+
+input[aria-invalid="true"]:focus-visible,
+textarea[aria-invalid="true"]:focus-visible {
+  outline-color: var(--mags-color-error);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 6rem;
+}
+
+button[type="submit"],
+button[type="button"] {
+  font-family: var(--mags-font-body);
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--mdx-base-color-grey-0);
+  background: var(--mags-color-primary);
+  border: none;
+  border-radius: var(--mdx-base-border-radius-sm);
+  padding: var(--mdx-base-spacing-unit-1-5x) var(--mdx-base-spacing-unit-4x);
+  cursor: pointer;
+  min-height: 2.75rem;
+  transition: background-color var(--mdx-base-motion-time-150) var(--mdx-base-motion-easing-ease-out-medium);
+}
+
+button[type="submit"]:hover,
+button[type="button"]:hover {
+  background: var(--mags-color-primary-dark);
+}
+
+button[type="submit"]:focus-visible,
+button[type="button"]:focus-visible {
+  outline: 3px solid var(--mags-color-focus);
+  outline-offset: 2px;
+}
+
+small {
+  font-family: var(--mags-font-micro);
+  font-size: 0.875rem;
+  color: var(--mags-color-text-secondary);
+}
+
+/* ================================================================
    Keyboard (kbd)
    ================================================================ */
 
