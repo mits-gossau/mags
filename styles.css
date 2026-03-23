@@ -584,7 +584,7 @@ fieldset {
   border: var(--mdx-base-border-width-xs) solid var(--mags-color-border);
   border-radius: var(--mdx-base-border-radius-md);
   padding: var(--mdx-base-spacing-unit-4x);
-  margin: 0;
+  margin: 0 0 var(--mdx-base-spacing-unit-3x);
 }
 
 legend {
