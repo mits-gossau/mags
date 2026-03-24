@@ -436,7 +436,7 @@ a:focus-visible {
 }
 
 .skip-link:focus {
-  top: 0;
+  top: var(--mdx-base-spacing-unit-2x);
   color: var(--mdx-base-color-grey-0);
 }
 
