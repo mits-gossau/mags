@@ -1,0 +1,753 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Interaktive Accessibility-Checkliste für Websites: Prüfpunkte nach Website-Elementen mit Fortschrittsverfolgung.">
+  <title>Accessibility-Checkliste – MAGS</title>
+  <link rel="preconnect" href="https://cdn.migros.ch" crossorigin>
+  <link rel="preload" href="https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowTextW05-Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://cdn.migros.ch/ch.migros/static/fonts/helvetica-now/HelveticaNowDisplayW05-Bold.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="../assets/M_Icon_tight.svg" type="image/svg+xml">
+  <link rel="icon" href="../assets/favicon-32x32.png" sizes="32x32" type="image/png">
+  <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+  <style>
+    .checklist-progress-total {
+      position: sticky;
+      top: 0;
+      background: var(--mags-color-bg);
+      padding: var(--mdx-base-spacing-unit-2x) 0;
+      z-index: 10;
+      border-bottom: var(--mdx-base-border-width-xs) solid var(--mags-color-border);
+      margin-bottom: var(--mdx-base-spacing-unit-3x);
+    }
+
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--mags-font-micro);
+      font-size: 0.875rem;
+      font-weight: 700;
+      margin-bottom: var(--mdx-base-spacing-unit-0-5x);
+    }
+
+    .progress-bar {
+      width: 100%;
+      height: 0.5rem;
+      background: var(--mags-color-bg-subtle);
+      border-radius: var(--mdx-base-border-radius-sm);
+      overflow: hidden;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      background: var(--mags-color-primary);
+      border-radius: var(--mdx-base-border-radius-sm);
+      transition: width var(--mdx-base-motion-time-300) var(--mdx-base-motion-easing-ease-out-medium);
+    }
+
+    .progress-bar-fill[data-complete="true"] {
+      background: var(--mags-color-success);
+    }
+
+    .section-progress {
+      height: 0.25rem;
+      margin-bottom: var(--mdx-base-spacing-unit-2x);
+    }
+
+    .checklist-section {
+      border: var(--mdx-base-border-width-xs) solid var(--mags-color-border);
+      border-radius: var(--mdx-base-border-radius-md);
+      margin-bottom: var(--mdx-base-spacing-unit-3x);
+      overflow: hidden;
+    }
+
+    .checklist-section summary {
+      display: flex;
+      align-items: center;
+      gap: var(--mdx-base-spacing-unit-2x);
+      padding: var(--mdx-base-spacing-unit-2x) var(--mdx-base-spacing-unit-3x);
+      background: var(--mags-color-bg-subtle);
+      font-family: var(--mags-font-display);
+      font-weight: 700;
+      font-size: 1.1rem;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .checklist-section summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .checklist-section summary::before {
+      content: "▶";
+      font-size: 0.7em;
+      transition: transform var(--mdx-base-motion-time-150) var(--mdx-base-motion-easing-ease-out-medium);
+    }
+
+    .checklist-section[open] summary::before {
+      transform: rotate(90deg);
+    }
+
+    .section-badge {
+      margin-left: auto;
+      font-family: var(--mags-font-micro);
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--mags-color-text-secondary);
+    }
+
+    .checklist-items {
+      padding: var(--mdx-base-spacing-unit-2x) var(--mdx-base-spacing-unit-3x);
+    }
+
+    .checklist-item {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--mdx-base-spacing-unit-1-5x);
+      padding: var(--mdx-base-spacing-unit-1x) 0;
+      border-bottom: var(--mdx-base-border-width-xs) solid var(--mags-color-border-subtle);
+    }
+
+    .checklist-item:last-child {
+      border-bottom: none;
+    }
+
+    .checklist-item input[type="checkbox"] {
+      flex-shrink: 0;
+      width: 1.25rem;
+      height: 1.25rem;
+      margin-top: 0.15rem;
+      accent-color: var(--mags-color-primary);
+      cursor: pointer;
+    }
+
+    .checklist-item label {
+      display: inline;
+      font-weight: 400;
+      margin-bottom: 0;
+      cursor: pointer;
+    }
+
+    .checklist-item label.is-checked {
+      text-decoration: line-through;
+      color: var(--mags-color-text-secondary);
+    }
+
+    .wcag-ref {
+      font-family: var(--mags-font-micro);
+      font-size: 0.75rem;
+      color: var(--mags-color-text-secondary);
+      white-space: nowrap;
+    }
+
+    .checklist-actions {
+      display: flex;
+      gap: var(--mdx-base-spacing-unit-2x);
+      margin-top: var(--mdx-base-spacing-unit-4x);
+      flex-wrap: wrap;
+    }
+
+    .btn-secondary {
+      font-family: var(--mags-font-body);
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--mags-color-primary);
+      background: transparent;
+      border: var(--mdx-base-border-width-md) solid var(--mags-color-primary);
+      border-radius: var(--mdx-base-border-radius-sm);
+      padding: var(--mdx-base-spacing-unit-1-5x) var(--mdx-base-spacing-unit-4x);
+      cursor: pointer;
+      min-height: 2.75rem;
+      transition: background-color var(--mdx-base-motion-time-150) var(--mdx-base-motion-easing-ease-out-medium);
+    }
+
+    .btn-secondary:hover {
+      background: var(--mags-color-primary-light);
+    }
+
+    .btn-secondary:focus-visible {
+      outline: 3px solid var(--mags-color-focus);
+      outline-offset: 2px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .progress-bar-fill,
+      .checklist-section summary::before {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Zum Inhalt springen</a>
+
+  <div class="page">
+    <header class="page-header">
+      <a href="../index.html">
+        <img src="../assets/MAGS_Logo.svg" alt="MAGS" class="site-logo" width="120" height="28">
+        <p class="site-subtitle">Migros Accessibility Guidelines &amp; Standards</p>
+      </a>
+    </header>
+
+    <main id="main" class="page-main">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <ol>
+          <li><a href="../index.html">MAGS</a></li>
+          <li><a href="webapp.html" aria-current="page">Accessibility-Checkliste</a></li>
+        </ol>
+      </nav>
+
+      <h1>Accessibility-Checkliste</h1>
+      <p>Interaktive Checkliste zur Prüfung der Barrierefreiheit, organisiert nach Website-Elementen. Der Fortschritt wird lokal im Browser gespeichert.</p>
+
+      <div class="checklist-progress-total" role="status" aria-live="polite">
+        <div class="progress-label">
+          <span>Gesamtfortschritt</span>
+          <span id="total-progress-text">0 / 0</span>
+        </div>
+        <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Gesamtfortschritt">
+          <div class="progress-bar-fill" id="total-progress-fill" style="width: 0%"></div>
+        </div>
+      </div>
+
+      <!-- Seitenkopf -->
+      <details class="checklist-section" data-section="header" open>
+        <summary>
+          Seitenkopf (Header)
+          <span class="section-badge" data-section-badge="header"></span>
+        </summary>
+        <div class="progress-bar section-progress"><div class="progress-bar-fill" data-section-fill="header" style="width: 0%"></div></div>
+        <div class="checklist-items">
+          <div class="checklist-item">
+            <input type="checkbox" id="header-skip" data-section="header">
+            <label for="header-skip">Skip-Link vorhanden (<code>&lt;a href="#main"&gt;Zum Inhalt springen&lt;/a&gt;</code>) <span class="wcag-ref">WCAG 2.4.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="header-lang" data-section="header">
+            <label for="header-lang">Seitensprache im <code>&lt;html lang="de"&gt;</code>-Attribut definiert <span class="wcag-ref">WCAG 3.1.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="header-title" data-section="header">
+            <label for="header-title">Seitentitel (<code>&lt;title&gt;</code>) ist beschreibend und einzigartig <span class="wcag-ref">WCAG 2.4.2</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="header-viewport" data-section="header">
+            <label for="header-viewport">Viewport erlaubt Zoom (<code>user-scalable</code> nicht auf <code>no</code>) <span class="wcag-ref">WCAG 1.4.4</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="header-logo" data-section="header">
+            <label for="header-logo">Logo hat beschreibenden Alt-Text <span class="wcag-ref">WCAG 1.1.1</span></label>
+          </div>
+        </div>
+      </details>
+
+      <!-- Navigation -->
+      <details class="checklist-section" data-section="nav">
+        <summary>
+          Navigation
+          <span class="section-badge" data-section-badge="nav"></span>
+        </summary>
+        <div class="progress-bar section-progress"><div class="progress-bar-fill" data-section-fill="nav" style="width: 0%"></div></div>
+        <div class="checklist-items">
+          <div class="checklist-item">
+            <input type="checkbox" id="nav-landmark" data-section="nav">
+            <label for="nav-landmark"><code>&lt;nav&gt;</code>-Element mit <code>aria-label</code> verwendet <span class="wcag-ref">WCAG 1.3.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="nav-keyboard" data-section="nav">
+            <label for="nav-keyboard">Alle Menüpunkte per Tastatur erreichbar (<kbd>Tab</kbd>, <kbd>Enter</kbd>) <span class="wcag-ref">WCAG 2.1.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="nav-current" data-section="nav">
+            <label for="nav-current">Aktuelle Seite mit <code>aria-current="page"</code> markiert <span class="wcag-ref">WCAG 1.3.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="nav-focus" data-section="nav">
+            <label for="nav-focus">Fokus-Indikatoren auf allen Menüpunkten sichtbar <span class="wcag-ref">WCAG 2.4.7</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="nav-mobile" data-section="nav">
+            <label for="nav-mobile">Mobile-Menü: Toggle-Button mit <code>aria-expanded</code> <span class="wcag-ref">WCAG 4.1.2</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="nav-consistent" data-section="nav">
+            <label for="nav-consistent">Navigation ist auf allen Seiten konsistent <span class="wcag-ref">WCAG 3.2.3</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="nav-multiple" data-section="nav">
+            <label for="nav-multiple">Mehrere Wege zur Seite (Navigation, Suche, Sitemap) <span class="wcag-ref">WCAG 2.4.5</span></label>
+          </div>
+        </div>
+      </details>
+
+      <!-- Hauptinhalt -->
+      <details class="checklist-section" data-section="main">
+        <summary>
+          Hauptinhalt (Main)
+          <span class="section-badge" data-section-badge="main"></span>
+        </summary>
+        <div class="progress-bar section-progress"><div class="progress-bar-fill" data-section-fill="main" style="width: 0%"></div></div>
+        <div class="checklist-items">
+          <div class="checklist-item">
+            <input type="checkbox" id="main-landmark" data-section="main">
+            <label for="main-landmark"><code>&lt;main&gt;</code>-Landmark vorhanden <span class="wcag-ref">WCAG 1.3.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="main-h1" data-section="main">
+            <label for="main-h1">Genau ein <code>&lt;h1&gt;</code> pro Seite <span class="wcag-ref">WCAG 1.3.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="main-headings" data-section="main">
+            <label for="main-headings">Überschriften bilden logische Hierarchie (h1–h6) ohne Sprünge <span class="wcag-ref">WCAG 1.3.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="main-landmarks" data-section="main">
+            <label for="main-landmarks">Seitenbereiche mit semantischen Landmarks (<code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;footer&gt;</code>) <span class="wcag-ref">WCAG 1.3.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="main-lists" data-section="main">
+            <label for="main-lists">Listen verwenden <code>&lt;ul&gt;</code>, <code>&lt;ol&gt;</code> oder <code>&lt;dl&gt;</code> <span class="wcag-ref">WCAG 1.3.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="main-lang" data-section="main">
+            <label for="main-lang">Sprachwechsel im Inhalt mit <code>lang</code>-Attribut markiert <span class="wcag-ref">WCAG 3.1.2</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="main-links" data-section="main">
+            <label for="main-links">Link-Texte sind aussagekräftig – nicht „hier klicken" <span class="wcag-ref">WCAG 2.4.4</span></label>
+          </div>
+        </div>
+      </details>
+
+      <!-- Bilder & Medien -->
+      <details class="checklist-section" data-section="media">
+        <summary>
+          Bilder &amp; Medien
+          <span class="section-badge" data-section-badge="media"></span>
+        </summary>
+        <div class="progress-bar section-progress"><div class="progress-bar-fill" data-section-fill="media" style="width: 0%"></div></div>
+        <div class="checklist-items">
+          <div class="checklist-item">
+            <input type="checkbox" id="media-alt" data-section="media">
+            <label for="media-alt">Informative Bilder haben einen beschreibenden Alt-Text <span class="wcag-ref">WCAG 1.1.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="media-decorative" data-section="media">
+            <label for="media-decorative">Dekorative Bilder haben <code>alt=""</code> oder sind per CSS eingebunden <span class="wcag-ref">WCAG 1.1.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="media-icons" data-section="media">
+            <label for="media-icons">Icon-Buttons haben einen zugänglichen Namen (<code>aria-label</code> oder versteckter Text) <span class="wcag-ref">WCAG 1.1.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="media-captions" data-section="media">
+            <label for="media-captions">Videos haben Untertitel <span class="wcag-ref">WCAG 1.2.2</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="media-transcript" data-section="media">
+            <label for="media-transcript">Audio-Inhalte haben ein Transkript <span class="wcag-ref">WCAG 1.2.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="media-audiodesc" data-section="media">
+            <label for="media-audiodesc">Videos haben Audiodeskription oder Textalternative <span class="wcag-ref">WCAG 1.2.5</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="media-notext" data-section="media">
+            <label for="media-notext">Keine Bilder von Text, ausser wenn unvermeidbar <span class="wcag-ref">WCAG 1.4.5</span></label>
+          </div>
+        </div>
+      </details>
+
+      <!-- Formulare -->
+      <details class="checklist-section" data-section="forms">
+        <summary>
+          Formulare
+          <span class="section-badge" data-section-badge="forms"></span>
+        </summary>
+        <div class="progress-bar section-progress"><div class="progress-bar-fill" data-section-fill="forms" style="width: 0%"></div></div>
+        <div class="checklist-items">
+          <div class="checklist-item">
+            <input type="checkbox" id="forms-labels" data-section="forms">
+            <label for="forms-labels">Jedes Eingabefeld hat ein sichtbares, programmatisch verknüpftes Label <span class="wcag-ref">WCAG 1.3.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="forms-group" data-section="forms">
+            <label for="forms-group">Zusammengehörige Felder mit <code>&lt;fieldset&gt;</code>/<code>&lt;legend&gt;</code> gruppiert <span class="wcag-ref">WCAG 1.3.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="forms-required" data-section="forms">
+            <label for="forms-required">Pflichtfelder visuell und mit <code>required</code> gekennzeichnet <span class="wcag-ref">WCAG 3.3.2</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="forms-errors" data-section="forms">
+            <label for="forms-errors">Fehlermeldungen beschreiben den Fehler in Text (nicht nur Farbe) <span class="wcag-ref">WCAG 3.3.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="forms-errlink" data-section="forms">
+            <label for="forms-errlink">Fehler mit <code>aria-describedby</code> verknüpft und <code>aria-invalid="true"</code> gesetzt <span class="wcag-ref">WCAG 3.3.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="forms-suggest" data-section="forms">
+            <label for="forms-suggest">Korrekturvorschläge bei Fehlern angeboten <span class="wcag-ref">WCAG 3.3.3</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="forms-autocomplete" data-section="forms">
+            <label for="forms-autocomplete">Persönliche Daten: passendes <code>autocomplete</code>-Attribut <span class="wcag-ref">WCAG 1.3.5</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="forms-redundant" data-section="forms">
+            <label for="forms-redundant">Keine redundanten Eingaben – bereits eingegebene Daten nicht erneut abfragen <span class="wcag-ref">WCAG 3.3.7</span></label>
+          </div>
+        </div>
+      </details>
+
+      <!-- Tabellen -->
+      <details class="checklist-section" data-section="tables">
+        <summary>
+          Tabellen
+          <span class="section-badge" data-section-badge="tables"></span>
+        </summary>
+        <div class="progress-bar section-progress"><div class="progress-bar-fill" data-section-fill="tables" style="width: 0%"></div></div>
+        <div class="checklist-items">
+          <div class="checklist-item">
+            <input type="checkbox" id="tables-th" data-section="tables">
+            <label for="tables-th"><code>&lt;th&gt;</code> für Spalten- und Zeilenköpfe verwendet <span class="wcag-ref">WCAG 1.3.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="tables-scope" data-section="tables">
+            <label for="tables-scope"><code>scope="col"</code> oder <code>scope="row"</code> gesetzt <span class="wcag-ref">WCAG 1.3.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="tables-caption" data-section="tables">
+            <label for="tables-caption"><code>&lt;caption&gt;</code> beschreibt den Zweck der Tabelle <span class="wcag-ref">WCAG 1.3.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="tables-responsive" data-section="tables">
+            <label for="tables-responsive">Tabelle ist auf kleinen Screens bedienbar (horizontales Scrollen oder Reflow) <span class="wcag-ref">WCAG 1.4.10</span></label>
+          </div>
+        </div>
+      </details>
+
+      <!-- Interaktive Komponenten -->
+      <details class="checklist-section" data-section="components">
+        <summary>
+          Interaktive Komponenten
+          <span class="section-badge" data-section-badge="components"></span>
+        </summary>
+        <div class="progress-bar section-progress"><div class="progress-bar-fill" data-section-fill="components" style="width: 0%"></div></div>
+        <div class="checklist-items">
+          <div class="checklist-item">
+            <input type="checkbox" id="comp-dialog" data-section="components">
+            <label for="comp-dialog">Dialoge: <code>role="dialog"</code>, <code>aria-modal</code>, Fokus-Trap, <kbd>Escape</kbd> schliesst <span class="wcag-ref">WCAG 4.1.2</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="comp-dialog-return" data-section="components">
+            <label for="comp-dialog-return">Dialog-Fokus kehrt nach dem Schliessen zum Auslöser zurück <span class="wcag-ref">WCAG 2.4.3</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="comp-tabs" data-section="components">
+            <label for="comp-tabs">Tabs: <code>role="tablist"</code>, <code>aria-selected</code>, Pfeiltasten-Navigation <span class="wcag-ref">WCAG 4.1.2</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="comp-accordion" data-section="components">
+            <label for="comp-accordion">Akkordeons: <code>&lt;details&gt;</code>/<code>&lt;summary&gt;</code> oder <code>aria-expanded</code> <span class="wcag-ref">WCAG 4.1.2</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="comp-tooltip" data-section="components">
+            <label for="comp-tooltip">Tooltips: <code>role="tooltip"</code>, <code>aria-describedby</code>, per <kbd>Escape</kbd> schliessbar <span class="wcag-ref">WCAG 1.4.13</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="comp-drag" data-section="components">
+            <label for="comp-drag">Drag-Interaktionen bieten eine Klick/Tap-Alternative <span class="wcag-ref">WCAG 2.5.7</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="comp-status" data-section="components">
+            <label for="comp-status">Statusmeldungen per <code>aria-live</code> oder <code>role="status"</code> angekündigt <span class="wcag-ref">WCAG 4.1.3</span></label>
+          </div>
+        </div>
+      </details>
+
+      <!-- Farben & Kontraste -->
+      <details class="checklist-section" data-section="colors">
+        <summary>
+          Farben &amp; Kontraste
+          <span class="section-badge" data-section-badge="colors"></span>
+        </summary>
+        <div class="progress-bar section-progress"><div class="progress-bar-fill" data-section-fill="colors" style="width: 0%"></div></div>
+        <div class="checklist-items">
+          <div class="checklist-item">
+            <input type="checkbox" id="colors-text" data-section="colors">
+            <label for="colors-text">Text-Kontrast mindestens 4.5:1 (normaler Text) bzw. 3:1 (grosser Text) <span class="wcag-ref">WCAG 1.4.3</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="colors-ui" data-section="colors">
+            <label for="colors-ui">UI-Komponenten und Grafiken: Kontrast mindestens 3:1 <span class="wcag-ref">WCAG 1.4.11</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="colors-only" data-section="colors">
+            <label for="colors-only">Farbe nicht als einziges Unterscheidungsmerkmal (z.B. Fehler auch mit Icon/Text) <span class="wcag-ref">WCAG 1.4.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="colors-focus" data-section="colors">
+            <label for="colors-focus">Fokus-Indikatoren ausreichend kontrastreich <span class="wcag-ref">WCAG 2.4.7</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="colors-dark" data-section="colors">
+            <label for="colors-dark">Dark Mode: alle Kontrastverhältnisse weiterhin eingehalten <span class="wcag-ref">WCAG 1.4.3</span></label>
+          </div>
+        </div>
+      </details>
+
+      <!-- Responsive & Zoom -->
+      <details class="checklist-section" data-section="responsive">
+        <summary>
+          Responsive &amp; Zoom
+          <span class="section-badge" data-section-badge="responsive"></span>
+        </summary>
+        <div class="progress-bar section-progress"><div class="progress-bar-fill" data-section-fill="responsive" style="width: 0%"></div></div>
+        <div class="checklist-items">
+          <div class="checklist-item">
+            <input type="checkbox" id="resp-reflow" data-section="responsive">
+            <label for="resp-reflow">Kein horizontales Scrollen bei 320px Breite (400% Zoom) <span class="wcag-ref">WCAG 1.4.10</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="resp-zoom200" data-section="responsive">
+            <label for="resp-zoom200">Text bis 200% vergrösserbar ohne Informationsverlust <span class="wcag-ref">WCAG 1.4.4</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="resp-spacing" data-section="responsive">
+            <label for="resp-spacing">Textabstände anpassbar ohne Inhaltsverlust <span class="wcag-ref">WCAG 1.4.12</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="resp-orientation" data-section="responsive">
+            <label for="resp-orientation">Orientierung nicht eingeschränkt (Hoch-/Querformat) <span class="wcag-ref">WCAG 1.3.4</span></label>
+          </div>
+        </div>
+      </details>
+
+      <!-- Animation & Bewegung -->
+      <details class="checklist-section" data-section="motion">
+        <summary>
+          Animation &amp; Bewegung
+          <span class="section-badge" data-section-badge="motion"></span>
+        </summary>
+        <div class="progress-bar section-progress"><div class="progress-bar-fill" data-section-fill="motion" style="width: 0%"></div></div>
+        <div class="checklist-items">
+          <div class="checklist-item">
+            <input type="checkbox" id="motion-reduced" data-section="motion">
+            <label for="motion-reduced"><code>prefers-reduced-motion</code> wird respektiert <span class="wcag-ref">WCAG 2.3.3</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="motion-pause" data-section="motion">
+            <label for="motion-pause">Automatisch bewegte Inhalte können pausiert/gestoppt werden <span class="wcag-ref">WCAG 2.2.2</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="motion-flash" data-section="motion">
+            <label for="motion-flash">Keine blinkenden/blitzenden Inhalte (über 3 pro Sekunde) <span class="wcag-ref">WCAG 2.3.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="motion-time" data-section="motion">
+            <label for="motion-time">Zeitlimits können verlängert oder deaktiviert werden <span class="wcag-ref">WCAG 2.2.1</span></label>
+          </div>
+        </div>
+      </details>
+
+      <!-- Tastatur -->
+      <details class="checklist-section" data-section="keyboard">
+        <summary>
+          Tastatur
+          <span class="section-badge" data-section-badge="keyboard"></span>
+        </summary>
+        <div class="progress-bar section-progress"><div class="progress-bar-fill" data-section-fill="keyboard" style="width: 0%"></div></div>
+        <div class="checklist-items">
+          <div class="checklist-item">
+            <input type="checkbox" id="kb-all" data-section="keyboard">
+            <label for="kb-all">Alle interaktiven Elemente per Tastatur erreichbar und bedienbar <span class="wcag-ref">WCAG 2.1.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="kb-trap" data-section="keyboard">
+            <label for="kb-trap">Keine Tastaturfallen – Fokus kann immer weiter bewegt werden <span class="wcag-ref">WCAG 2.1.2</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="kb-order" data-section="keyboard">
+            <label for="kb-order">Fokus-Reihenfolge ist logisch und nachvollziehbar <span class="wcag-ref">WCAG 2.4.3</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="kb-visible" data-section="keyboard">
+            <label for="kb-visible">Fokus-Indikator jederzeit sichtbar <span class="wcag-ref">WCAG 2.4.7</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="kb-obscured" data-section="keyboard">
+            <label for="kb-obscured">Fokussierte Elemente nicht von Sticky-Headern/Overlays verdeckt <span class="wcag-ref">WCAG 2.4.11</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="kb-touch" data-section="keyboard">
+            <label for="kb-touch">Touch-Targets mindestens 24×24 CSS-Pixel <span class="wcag-ref">WCAG 2.5.8</span></label>
+          </div>
+        </div>
+      </details>
+
+      <!-- Authentifizierung -->
+      <details class="checklist-section" data-section="auth">
+        <summary>
+          Authentifizierung &amp; Login
+          <span class="section-badge" data-section-badge="auth"></span>
+        </summary>
+        <div class="progress-bar section-progress"><div class="progress-bar-fill" data-section-fill="auth" style="width: 0%"></div></div>
+        <div class="checklist-items">
+          <div class="checklist-item">
+            <input type="checkbox" id="auth-nocognitive" data-section="auth">
+            <label for="auth-nocognitive">Keine kognitiven Funktionstests (Rätsel, Merkaufgaben) für Login <span class="wcag-ref">WCAG 3.3.8</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="auth-paste" data-section="auth">
+            <label for="auth-paste">Passwort-Einfügen (Paste) ist erlaubt <span class="wcag-ref">WCAG 3.3.8</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="auth-help" data-section="auth">
+            <label for="auth-help">Hilfemechanismen sind konsistent platziert <span class="wcag-ref">WCAG 3.2.6</span></label>
+          </div>
+        </div>
+      </details>
+
+      <!-- Footer -->
+      <details class="checklist-section" data-section="footer">
+        <summary>
+          Footer
+          <span class="section-badge" data-section-badge="footer"></span>
+        </summary>
+        <div class="progress-bar section-progress"><div class="progress-bar-fill" data-section-fill="footer" style="width: 0%"></div></div>
+        <div class="checklist-items">
+          <div class="checklist-item">
+            <input type="checkbox" id="footer-landmark" data-section="footer">
+            <label for="footer-landmark"><code>&lt;footer&gt;</code>-Landmark vorhanden <span class="wcag-ref">WCAG 1.3.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="footer-links" data-section="footer">
+            <label for="footer-links">Alle Links per Tastatur erreichbar und mit ausreichendem Kontrast <span class="wcag-ref">WCAG 2.1.1</span></label>
+          </div>
+          <div class="checklist-item">
+            <input type="checkbox" id="footer-context" data-section="footer">
+            <label for="footer-context">Keine unerwarteten Kontextänderungen durch Footer-Links <span class="wcag-ref">WCAG 3.2.1</span></label>
+          </div>
+        </div>
+      </details>
+
+      <div class="checklist-actions">
+        <button type="button" class="btn-secondary" id="btn-reset">Checkliste zurücksetzen</button>
+        <button type="button" class="btn-secondary" id="btn-expand">Alle öffnen</button>
+        <button type="button" class="btn-secondary" id="btn-collapse">Alle schliessen</button>
+      </div>
+    </main>
+
+    <footer class="page-footer">
+      <p>MAGS – Migros Accessibility Guidelines &amp; Standards · <a href="../index.html">Zurück zur Übersicht</a></p>
+    </footer>
+  </div>
+
+  <script>
+    (function () {
+      var STORAGE_KEY = 'mags-checklist';
+      var checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+      var totalFill = document.getElementById('total-progress-fill');
+      var totalText = document.getElementById('total-progress-text');
+      var totalBar = totalFill.parentElement;
+
+      function loadState() {
+        try {
+          return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+        } catch (e) {
+          return {};
+        }
+      }
+
+      function saveState(state) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        } catch (e) {}
+      }
+
+      function updateProgress() {
+        var state = loadState();
+        var sections = {};
+        var totalChecked = 0;
+        var totalCount = checkboxes.length;
+
+        checkboxes.forEach(function (cb) {
+          var section = cb.getAttribute('data-section');
+          if (!sections[section]) sections[section] = { checked: 0, total: 0 };
+          sections[section].total++;
+          if (cb.checked) {
+            sections[section].checked++;
+            totalChecked++;
+          }
+          var label = document.querySelector('label[for="' + cb.id + '"]');
+          if (label) {
+            if (cb.checked) {
+              label.classList.add('is-checked');
+            } else {
+              label.classList.remove('is-checked');
+            }
+          }
+        });
+
+        Object.keys(sections).forEach(function (key) {
+          var s = sections[key];
+          var pct = s.total > 0 ? Math.round((s.checked / s.total) * 100) : 0;
+          var fill = document.querySelector('[data-section-fill="' + key + '"]');
+          var badge = document.querySelector('[data-section-badge="' + key + '"]');
+          if (fill) {
+            fill.style.width = pct + '%';
+            fill.setAttribute('data-complete', pct === 100 ? 'true' : 'false');
+          }
+          if (badge) {
+            badge.textContent = s.checked + ' / ' + s.total;
+          }
+        });
+
+        var totalPct = totalCount > 0 ? Math.round((totalChecked / totalCount) * 100) : 0;
+        totalFill.style.width = totalPct + '%';
+        totalFill.setAttribute('data-complete', totalPct === 100 ? 'true' : 'false');
+        totalText.textContent = totalChecked + ' / ' + totalCount;
+        totalBar.setAttribute('aria-valuenow', totalPct);
+      }
+
+      // Init
+      var state = loadState();
+      checkboxes.forEach(function (cb) {
+        if (state[cb.id]) cb.checked = true;
+        cb.addEventListener('change', function () {
+          var s = loadState();
+          if (cb.checked) {
+            s[cb.id] = true;
+          } else {
+            delete s[cb.id];
+          }
+          saveState(s);
+          updateProgress();
+        });
+      });
+      updateProgress();
+
+      // Reset
+      document.getElementById('btn-reset').addEventListener('click', function () {
+        if (confirm('Checkliste wirklich zurücksetzen? Alle Häkchen werden entfernt.')) {
+          localStorage.removeItem(STORAGE_KEY);
+          checkboxes.forEach(function (cb) { cb.checked = false; });
+          updateProgress();
+        }
+      });
+
+      // Expand/Collapse
+      document.getElementById('btn-expand').addEventListener('click', function () {
+        document.querySelectorAll('.checklist-section').forEach(function (d) { d.open = true; });
+      });
+      document.getElementById('btn-collapse').addEventListener('click', function () {
+        document.querySelectorAll('.checklist-section').forEach(function (d) { d.open = false; });
+      });
+    })();
+  </script>
+</body>
+</html>
