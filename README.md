@@ -1,5 +1,11 @@
 # MAGS – Migros Accessibility Guidelines & Standards
 
+🚧 **Dieses Repository ist ein Work in Progress (WIP)**  
+Die Inhalte sind experimentell, unvollständig und können sich jederzeit ändern.  
+Nicht für Produktionszwecke verwenden.
+
+![Status](https://img.shields.io/badge/status-WIP-yellow)
+
 Verbindliche Richtlinien zur digitalen Barrierefreiheit für alle Websites der Migros-Gruppe.
 
 **Ziel:** WCAG 2.2 Level AA auf allen digitalen Plattformen.
