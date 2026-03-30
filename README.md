@@ -35,6 +35,3 @@ Dann [http://localhost:8000](http://localhost:8000) öffnen.
 
 Änderungen werden im Abschnitt [Governance → Versionierung](governance/versionierung.html) dokumentiert.
 
-## Lizenz
-
-Siehe [LICENSE](LICENSE).
